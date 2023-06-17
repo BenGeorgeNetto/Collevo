@@ -1,3 +1,4 @@
+import 'package:collevo/widgets/home_card.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -8,14 +9,63 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  var name = "Rick Morgan";
+  var email = "rickmorgan.b20cs1169@mbcet.ac.in";
+  var sem = "6";
+  var dept = "CSE";
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Home"),
+          title: const Text("collevo"),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.person_rounded),
+            ),
+          ],
         ),
-        body: Column(),
+        body: Column(
+          children: [
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(16.0, 64.0, 16.0, 32.0),
+                child: Column(children: [
+                  Text(name,
+                      style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                            fontWeight: FontWeight.w500,
+                          )),
+                  Text(
+                    email,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                  Text(
+                    "S$sem | $dept",
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ]),
+              ),
+            ),
+            const HomeCard(
+              cardText: "Request Activity Points",
+              buttonText: "Add",
+            ),
+            const HomeCard(
+              cardText: "View Activity Points",
+              buttonText: "View",
+            ),
+            const HomeCard(
+              cardText: "Pending Requests",
+              buttonText: "View",
+            ),
+            const HomeCard(
+              cardText: "Rejected Requests",
+              buttonText: "View",
+            ),
+          ],
+        ),
       ),
     );
   }
