@@ -22,6 +22,14 @@ class CustomTheme {
       ),
       textTheme: const CustomTextTheme(),
       scaffoldBackgroundColor: CustomColors.voidColor,
+      cardTheme: const CardTheme(
+        color: CustomColors.blueGray,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(16.0),
+          ),
+        ),
+      ),
     );
   }
 }
