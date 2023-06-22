@@ -11,14 +11,11 @@ class AppRouter {
       case '/signin':
         return MaterialPageRoute(builder: (_) => const Signin());
       case '/new_request':
-        return MaterialPageRoute(builder: (_) => const NewRequest())
+        return MaterialPageRoute(builder: (_) => const NewRequest());
       default:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
     }
   }
 
-
-  void dispose() {
-    
-  }
+  void dispose() {}
 }
