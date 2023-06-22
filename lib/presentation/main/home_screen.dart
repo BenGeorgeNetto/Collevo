@@ -34,9 +34,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.fromLTRB(16.0, 64.0, 16.0, 32.0),
                 child: Column(children: [
                   Text(name,
-                      style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                            fontWeight: FontWeight.w500,
-                          )),
+                      style:
+                          Theme.of(context).textTheme.headlineLarge?.copyWith(
+                                fontWeight: FontWeight.w500,
+                              )),
                   Text(
                     email,
                     style: Theme.of(context).textTheme.bodySmall,
@@ -48,21 +49,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 ]),
               ),
             ),
-            const HomeCard(
-              cardText: "Request Activity Points",
-              buttonText: "Add",
-            ),
-            const HomeCard(
-              cardText: "View Activity Points",
-              buttonText: "View",
-            ),
-            const HomeCard(
-              cardText: "Pending Requests",
-              buttonText: "View",
-            ),
-            const HomeCard(
-              cardText: "Rejected Requests",
-              buttonText: "View",
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                const HomeCard(
+                  cardText: "Request Activity Points",
+                ),
+                const HomeCard(
+                  cardText: "View Activity Points",
+                ),
+              ],
             ),
           ],
         ),
