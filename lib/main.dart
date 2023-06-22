@@ -1,4 +1,4 @@
-import 'package:collevo/presentation/main/home_screen.dart';
+import 'package:collevo/presentation/router/app_router.dart';
 import 'package:collevo/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -14,14 +14,22 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
+  final AppRouter _appRouter = AppRouter();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: CustomTheme.getThemeData(),
-      
-      home: const HomeScreen(),
       debugShowCheckedModeBanner: false,
+      onGenerateRoute: _appRouter.onGenerateRoute,
     );
+  }
+
+  @override
+  void dispose() {
+    _appRouter.dispose();
+    super.dispose();
   }
 }
 
