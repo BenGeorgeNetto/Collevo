@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 
 class HomeCard extends StatelessWidget {
   final String cardText;
+  final String routeName;
 
   const HomeCard({
     super.key,
     required this.cardText,
+    required this.routeName,
   });
 
   @override
@@ -17,7 +19,9 @@ class HomeCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(.0),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.pushNamed(context, routeName);
+        },
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12.0),

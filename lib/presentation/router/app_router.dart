@@ -1,6 +1,8 @@
 import 'package:collevo/presentation/auth/signin_screen.dart';
+import 'package:collevo/presentation/main/error_screen.dart';
 import 'package:collevo/presentation/main/home_screen.dart';
 import 'package:collevo/presentation/main/new_request_screen.dart';
+import 'package:collevo/presentation/main/view_requests_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
@@ -12,8 +14,10 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const Signin());
       case '/new_request':
         return MaterialPageRoute(builder: (_) => const NewRequest());
+      case '/view_requests':
+        return MaterialPageRoute(builder: (_) => const ViewRequests());
       default:
-        return MaterialPageRoute(builder: (_) => const HomeScreen());
+        return MaterialPageRoute(builder: (_) => const ErrorScreen());
     }
   }
 

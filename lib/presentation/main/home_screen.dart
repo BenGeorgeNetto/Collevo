@@ -54,9 +54,11 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 const HomeCard(
                   cardText: "Request Activity Points",
+                  routeName: '/new_request',
                 ),
                 const HomeCard(
                   cardText: "View Activity Points",
+                  routeName: '/view_requests',
                 ),
               ],
             ),

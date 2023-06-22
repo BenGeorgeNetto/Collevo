@@ -8,7 +8,7 @@ class NewRequest extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Request Activity Points"),
+          title: const Text("New Request"),
         ),
         body: Container(),
       ),
