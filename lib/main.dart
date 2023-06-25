@@ -1,6 +1,8 @@
+import 'package:collevo/cubit/bottom_nav_bar_cubit.dart';
 import 'package:collevo/presentation/router/app_router.dart';
 import 'package:collevo/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,15 +16,22 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   final AppRouter _appRouter = AppRouter();
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: CustomTheme.getThemeData(),
-      debugShowCheckedModeBanner: false,
-      onGenerateRoute: _appRouter.onGenerateRoute,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<BottomNavBarCubit>(
+          create: (context) => BottomNavBarCubit(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Collevo',
+        theme: CustomTheme.getThemeData(),
+        debugShowCheckedModeBanner: false,
+        onGenerateRoute: _appRouter.onGenerateRoute,
+      ),
     );
   }
 
@@ -32,4 +41,3 @@ class _MyAppState extends State<MyApp> {
     super.dispose();
   }
 }
-

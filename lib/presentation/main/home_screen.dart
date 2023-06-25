@@ -1,3 +1,4 @@
+import 'package:collevo/widgets/bottom_nav_bar.dart';
 import 'package:collevo/widgets/home_card.dart';
 import 'package:flutter/material.dart';
 
@@ -27,17 +28,19 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
+        bottomNavigationBar: BottomNavBar(),
         body: Column(
           children: [
             Center(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(16.0, 64.0, 16.0, 32.0),
                 child: Column(children: [
-                  Text(name,
-                      style:
-                          Theme.of(context).textTheme.headlineLarge?.copyWith(
-                                fontWeight: FontWeight.w500,
-                              )),
+                  Text(
+                    name,
+                    style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                          fontWeight: FontWeight.w500,
+                        ),
+                  ),
                   Text(
                     email,
                     style: Theme.of(context).textTheme.bodySmall,
@@ -51,12 +54,12 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                const HomeCard(
+              children: const [
+                HomeCard(
                   cardText: "Request Activity Points",
                   routeName: '/new_request',
                 ),
-                const HomeCard(
+                HomeCard(
                   cardText: "View Activity Points",
                   routeName: '/view_requests',
                 ),

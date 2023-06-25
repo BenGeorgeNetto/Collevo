@@ -30,6 +30,15 @@ class CustomTheme {
           ),
         ),
       ),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        backgroundColor: CustomColors.voidColor,
+        selectedItemColor: CustomColors.psybeam,
+        unselectedItemColor: CustomColors.manga,
+        showSelectedLabels: true,
+        showUnselectedLabels: false,
+        enableFeedback: true,
+        type: BottomNavigationBarType.fixed,
+      ),
     );
   }
 }

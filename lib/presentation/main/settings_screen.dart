@@ -1,20 +1,20 @@
 import 'package:collevo/widgets/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 
-class ViewRequests extends StatefulWidget {
-  const ViewRequests({super.key});
+class Settings extends StatefulWidget {
+  const Settings({super.key});
 
   @override
-  State<ViewRequests> createState() => _ViewRequestsState();
+  State<Settings> createState() => _SettingsState();
 }
 
-class _ViewRequestsState extends State<ViewRequests> {
+class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("My Requests"),
+          title: const Text("Settings"),
         ),
         bottomNavigationBar: BottomNavBar(),
         body: Container(),
