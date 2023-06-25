@@ -23,7 +23,9 @@ class _HomeScreenState extends State<HomeScreen> {
           title: const Text("collevo"),
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/user_details');
+              },
               icon: const Icon(Icons.person_rounded),
             ),
           ],
@@ -60,8 +62,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   routeName: '/new_request',
                 ),
                 HomeCard(
-                  cardText: "View Activity Points",
-                  routeName: '/view_requests',
+                  cardText: "Usage instructions",
+                  routeName: '/usage_instructions',
                 ),
               ],
             ),

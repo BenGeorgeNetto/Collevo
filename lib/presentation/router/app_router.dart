@@ -3,6 +3,8 @@ import 'package:collevo/presentation/main/error_screen.dart';
 import 'package:collevo/presentation/main/home_screen.dart';
 import 'package:collevo/presentation/main/new_request_screen.dart';
 import 'package:collevo/presentation/main/settings_screen.dart';
+import 'package:collevo/presentation/main/usage_instructions_screen.dart';
+import 'package:collevo/presentation/main/user_details_screen.dart';
 import 'package:collevo/presentation/main/view_requests_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -28,6 +30,14 @@ class AppRouter {
       case '/new_request':
         return MaterialPageRoute(
           builder: (context) => const NewRequest(),
+        );
+      case '/user_details':
+        return MaterialPageRoute(
+          builder: (context) => const UserDetails(),
+        );
+      case '/usage_instructions':
+        return MaterialPageRoute(
+          builder: (context) => const UsageInstructions(),
         );
       default:
         return MaterialPageRoute(
