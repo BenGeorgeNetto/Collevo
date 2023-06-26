@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-        bottomNavigationBar: BottomNavBar(),
+        bottomNavigationBar: const BottomNavBar(),
         body: Column(
           children: [
             Center(

@@ -16,7 +16,7 @@ class _ViewRequestsState extends State<ViewRequests> {
         appBar: AppBar(
           title: const Text("My Requests"),
         ),
-        bottomNavigationBar: BottomNavBar(),
+        bottomNavigationBar: const BottomNavBar(),
         body: Container(),
       ),
     );

@@ -16,7 +16,7 @@ class _SettingsState extends State<Settings> {
         appBar: AppBar(
           title: const Text("Settings"),
         ),
-        bottomNavigationBar: BottomNavBar(),
+        bottomNavigationBar: const BottomNavBar(),
         body: Container(),
       ),
     );
