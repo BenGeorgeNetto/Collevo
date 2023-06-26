@@ -5,14 +5,14 @@ import 'package:collevo/utilities/dialogs/error_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({Key? key}) : super(key: key);
+class SignUp extends StatefulWidget {
+  const SignUp({Key? key}) : super(key: key);
 
   @override
-  State<SignIn> createState() => _SignInState();
+  State<SignUp> createState() => _SignUpState();
 }
 
-class _SignInState extends State<SignIn> {
+class _SignUpState extends State<SignUp> {
   late final TextEditingController _email;
   late final TextEditingController _password;
 
@@ -34,16 +34,15 @@ class _SignInState extends State<SignIn> {
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) async {
-        if (state is AuthStateLoggedOut) {
-          if (state.exception is UserNotFoundAuthException) {
-            await showErrorDialog(
-              context,
-              'Check entered credentials',
-            );
-          } else if (state.exception is WrongPasswordAuthException) {
-            await showErrorDialog(context, 'Wrong credentials');
+        if (state is AuthStateRegistering) {
+          if (state.exception is WeakPasswordAuthException) {
+            await showErrorDialog(context, 'Weak password');
+          } else if (state.exception is EmailAlreadyInUseAuthException) {
+            await showErrorDialog(context, 'Email is already in use');
           } else if (state.exception is GenericAuthException) {
-            await showErrorDialog(context, 'Authentication error');
+            await showErrorDialog(context, 'Failed to register');
+          } else if (state.exception is InvalidEmailAuthException) {
+            await showErrorDialog(context, 'Invalid email');
           }
         }
       },
@@ -65,25 +64,22 @@ class _SignInState extends State<SignIn> {
                   child: Column(
                     children: [
                       const Text(
-                        'Sign In',
+                        'Sign Up',
                         style: TextStyle(
                           fontSize: 28.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.02,
-                      ),
+                          height: MediaQuery.of(context).size.height * 0.02),
                       TextField(
                         controller: _email,
                         enableSuggestions: false,
                         autocorrect: false,
+                        autofocus: true,
                         keyboardType: TextInputType.emailAddress,
                         decoration: const InputDecoration(
-                          hintStyle: TextStyle(
-                            color: CustomColors.blueGray,
-                          ),
-                          hintText: 'Enter your email',
+                          hintText: 'Enter your MBCET email',
                           filled: true,
                           fillColor: CustomColors.manga,
                           contentPadding: EdgeInsets.all(16.0),
@@ -91,6 +87,9 @@ class _SignInState extends State<SignIn> {
                             borderRadius: BorderRadius.all(
                               Radius.circular(8.0),
                             ),
+                          ),
+                          hintStyle: TextStyle(
+                            color: CustomColors.blueGray,
                           ),
                         ),
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -106,10 +105,7 @@ class _SignInState extends State<SignIn> {
                         enableSuggestions: false,
                         autocorrect: false,
                         decoration: const InputDecoration(
-                          hintStyle: TextStyle(
-                            color: CustomColors.blueGray,
-                          ),
-                          hintText: 'Enter your password',
+                          hintText: 'Set a password',
                           filled: true,
                           fillColor: CustomColors.manga,
                           contentPadding: EdgeInsets.all(16.0),
@@ -118,45 +114,41 @@ class _SignInState extends State<SignIn> {
                               Radius.circular(8.0),
                             ),
                           ),
+                          hintStyle: TextStyle(
+                            color: CustomColors.blueGray,
+                          ),
                         ),
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                               color: CustomColors.voidColor,
                             ),
                       ),
                       SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.05),
-                      ElevatedButton(
-                        onPressed: () async {
-                          final email = _email.text;
-                          final password = _password.text;
-                          context.read<AuthBloc>().add(
-                                AuthEventLogIn(
-                                  email,
-                                  password,
-                                ),
-                              );
-                        },
-                        child: const Text('Sign In'),
+                        height: MediaQuery.of(context).size.height * 0.05 / 2,
                       ),
-                      SizedBox(
-                          height:
-                              MediaQuery.of(context).size.height * 0.05 / 2),
-                      OutlinedButton(
-                        onPressed: () {
-                          context.read<AuthBloc>().add(
-                                const AuthEventForgotPassword(),
-                              );
-                        },
-                        child: const Text('Forgot your password? Click here'),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ElevatedButton(
+                          onPressed: () async {
+                            final email = _email.text;
+                            final password = _password.text;
+                            context.read<AuthBloc>().add(
+                                  AuthEventRegister(
+                                    email,
+                                    password,
+                                  ),
+                                );
+                          },
+                          child: const Text('Register'),
+                        ),
                       ),
                       OutlinedButton(
                         onPressed: () {
                           context.read<AuthBloc>().add(
-                                const AuthEventShouldRegister(),
+                                const AuthEventLogOut(),
                               );
                         },
-                        child: const Text('Not registered yet? Register here'),
-                      )
+                        child: const Text('Already registered? Login here'),
+                      ),
                     ],
                   ),
                 ),

@@ -25,7 +25,7 @@ class AppRouter {
         );
       case '/signin':
         return MaterialPageRoute(
-          builder: (context) => const Signin(),
+          builder: (context) => const SignIn(),
         );
       case '/new_request':
         return MaterialPageRoute(
