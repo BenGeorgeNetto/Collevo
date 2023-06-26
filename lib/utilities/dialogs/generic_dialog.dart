@@ -13,8 +13,14 @@ Future<T?> showGenericDialog<T>({
     context: context,
     builder: (context) {
       return AlertDialog(
-        title: Text(title),
-        content: Text(content),
+        title: Text(
+          title,
+          style: Theme.of(context).textTheme.headlineSmall,
+        ),
+        content: Text(
+          content,
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
         actions: options.keys.map((optionTitle) {
           final value = options[optionTitle];
           return TextButton(
