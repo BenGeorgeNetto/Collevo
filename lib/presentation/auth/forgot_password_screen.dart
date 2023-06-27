@@ -37,6 +37,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             await showPasswordResetSentDialog(context);
           }
           if (state.exception != null) {
+            // ignore: use_build_context_synchronously
             await showErrorDialog(
               context,
               "Could not process request. Ensure that you're a registered user",

@@ -35,6 +35,7 @@ class LoadingScreen {
     required BuildContext context,
     required String text,
   }) {
+    // ignore: no_leading_underscores_for_local_identifiers
     final _text = StreamController<String>();
     _text.add(text);
 
