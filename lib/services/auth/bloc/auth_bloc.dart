@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collevo/services/auth/auth_provider.dart';
 import 'package:collevo/services/auth/auth_user.dart';
 import 'package:equatable/equatable.dart';
@@ -157,5 +158,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         );
       }
     });
+  }
+
+  Future<bool> isEmailWhitelisted(String email) async {
+    try {
+      final snapshot = await FirebaseFirestore.instance
+          .collection('whitelist')
+          .doc('students')
+          .get();
+      final whitelist = snapshot.data()?['emails'] ?? [];
+      return whitelist.contains(email);
+    } catch (e) {
+      return false;
+    }
   }
 }

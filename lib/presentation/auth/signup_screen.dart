@@ -1,7 +1,10 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:collevo/colors.dart';
 import 'package:collevo/services/auth/auth_exceptions.dart';
 import 'package:collevo/services/auth/bloc/auth_bloc.dart';
 import 'package:collevo/utilities/dialogs/error_dialog.dart';
+import 'package:collevo/utilities/dialogs/invalid_email_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,11 +18,13 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   late final TextEditingController _email;
   late final TextEditingController _password;
+  late final TextEditingController _confirmPassword;
 
   @override
   void initState() {
     _email = TextEditingController();
     _password = TextEditingController();
+    _confirmPassword = TextEditingController();
     super.initState();
   }
 
@@ -27,6 +32,7 @@ class _SignUpState extends State<SignUp> {
   void dispose() {
     _email.dispose();
     _password.dispose();
+    _confirmPassword.dispose();
     super.dispose();
   }
 
@@ -123,6 +129,32 @@ class _SignUpState extends State<SignUp> {
                             ),
                       ),
                       SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
+                      TextField(
+                        controller: _confirmPassword,
+                        obscureText: true,
+                        enableSuggestions: false,
+                        autocorrect: false,
+                        decoration: const InputDecoration(
+                          hintText: 'Confirm password',
+                          filled: true,
+                          fillColor: CustomColors.manga,
+                          contentPadding: EdgeInsets.all(16.0),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(8.0),
+                            ),
+                          ),
+                          hintStyle: TextStyle(
+                            color: CustomColors.blueGray,
+                          ),
+                        ),
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: CustomColors.voidColor,
+                            ),
+                      ),
+                      SizedBox(
                         height: MediaQuery.of(context).size.height * 0.05 / 2,
                       ),
                       Padding(
@@ -131,12 +163,32 @@ class _SignUpState extends State<SignUp> {
                           onPressed: () async {
                             final email = _email.text;
                             final password = _password.text;
-                            context.read<AuthBloc>().add(
-                                  AuthEventRegister(
-                                    email,
-                                    password,
-                                  ),
+                            final confirmPassword = _confirmPassword.text;
+
+                            final isWhitelisted = await context
+                                .read<AuthBloc>()
+                                .isEmailWhitelisted(email);
+
+                            if (!isWhitelisted) {
+                              await showInvalidEmailDialog(
+                                context,
+                                'Entered email is not a valid student MBCET email id. If you think this is a mistake, please contact the developer.',
+                              );
+                            } else {
+                              if (password != confirmPassword) {
+                                await showErrorDialog(
+                                  context,
+                                  'Passwords do not match',
                                 );
+                              } else {
+                                context.read<AuthBloc>().add(
+                                      AuthEventRegister(
+                                        email,
+                                        password,
+                                      ),
+                                    );
+                              }
+                            }
                           },
                           child: const Text('Register'),
                         ),
