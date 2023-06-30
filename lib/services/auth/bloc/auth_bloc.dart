@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collevo/services/auth/auth_provider.dart';
 import 'package:collevo/services/auth/auth_user.dart';
+import 'package:collevo/services/preferences/preferences_service.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart' show immutable;
 
@@ -104,6 +105,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       );
       final email = event.email;
       final password = event.password;
+      final preferencesService = PreferencesService();
       try {
         final user = await provider.logIn(
           email: email,
@@ -125,6 +127,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               isLoading: false,
             ),
           );
+          await preferencesService.setUserDetails(email);
           emit(AuthStateLoggedIn(
             user: user,
             isLoading: false,
