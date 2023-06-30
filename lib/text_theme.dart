@@ -36,12 +36,18 @@ class CustomTextTheme extends TextTheme {
           ),
           headlineLarge: const TextStyle(
             fontFamily: 'Poppins',
+            fontSize: 36,
+            fontWeight: FontWeight.w500,
           ),
           headlineMedium: const TextStyle(
             fontFamily: 'Poppins',
+            fontSize: 28,
+            fontWeight: FontWeight.w500,
           ),
           headlineSmall: const TextStyle(
             fontFamily: 'Poppins',
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
           ),
         );
 }

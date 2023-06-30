@@ -45,6 +45,13 @@ class _NewRequestState extends State<NewRequest> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'Activity Type',
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
+              ),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 decoration: BoxDecoration(
@@ -76,64 +83,88 @@ class _NewRequestState extends State<NewRequest> {
               const SizedBox(height: 16.0),
               Visibility(
                 visible: _selectedItem1 != null,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.surface,
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
-                      hint: const Text('Select Activity'),
-                      value: _selectedItem2,
-                      isExpanded: true,
-                      onChanged: (newValue) {
-                        setState(() {
-                          _selectedItem2 = newValue;
-                          _selectedItem3 = null;
-                        });
-                      },
-                      items:
-                          _dropdownItems2[_selectedItem1]?.map((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
-                      dropdownColor: Theme.of(context).colorScheme.surface,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Activity',
+                        style: Theme.of(context).textTheme.headlineMedium,
+                      ),
                     ),
-                  ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.surface,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton<String>(
+                          hint: const Text('Select Activity'),
+                          value: _selectedItem2,
+                          isExpanded: true,
+                          onChanged: (newValue) {
+                            setState(() {
+                              _selectedItem2 = newValue;
+                              _selectedItem3 = null;
+                            });
+                          },
+                          items: _dropdownItems2[_selectedItem1]
+                              ?.map((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                          dropdownColor: Theme.of(context).colorScheme.surface,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(height: 16.0),
               Visibility(
                 visible: _selectedItem2 != null,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.surface,
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
-                      hint: const Text('Select Activity Level'),
-                      value: _selectedItem3,
-                      isExpanded: true,
-                      onChanged: (newValue) {
-                        setState(() {
-                          _selectedItem3 = newValue;
-                        });
-                      },
-                      items:
-                          _dropdownItems3[_selectedItem2]?.map((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
-                      dropdownColor: Theme.of(context).colorScheme.surface,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Activity Level',
+                        style: Theme.of(context).textTheme.headlineMedium,
+                      ),
                     ),
-                  ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.surface,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton<String>(
+                          hint: const Text('Select Activity Level'),
+                          value: _selectedItem3,
+                          isExpanded: true,
+                          onChanged: (newValue) {
+                            setState(() {
+                              _selectedItem3 = newValue;
+                            });
+                          },
+                          items: _dropdownItems3[_selectedItem2]
+                              ?.map((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                          dropdownColor: Theme.of(context).colorScheme.surface,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(height: 16.0),
