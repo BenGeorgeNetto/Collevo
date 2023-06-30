@@ -1,7 +1,5 @@
-/**
- * TODO: Write activity list with corresponding points
- * ? Fetch user points for activityType before selecting dropdown3 or after
- */
+// TODO: Write activity list with corresponding points
+// ? Fetch user points for activityType before selecting dropdown3 or after
 
 import 'package:flutter/material.dart';
 
