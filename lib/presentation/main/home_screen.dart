@@ -64,14 +64,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                           fontWeight: FontWeight.w500,
                         ),
+                    textAlign: TextAlign.center,
                   ),
+                  // Text(
+                  //   '$email',
+                  //   style: Theme.of(context).textTheme.bodySmall,
+                  //   textAlign: TextAlign.center,
+                  // ),
                   Text(
-                    '$email',
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
-                  Text(
-                    "$rollNo | $dept",
-                    style: Theme.of(context).textTheme.bodySmall,
+                    "$sid",
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: Theme.of(context).colorScheme.secondary,
+                        ),
+                    textAlign: TextAlign.center,
                   ),
                 ]),
               ),
