@@ -41,17 +41,15 @@ class PreferencesService {
   }
 
   Future<void> setUserDetails(String email) async {
-    final QuerySnapshot subcollectionSnapshot = await FirebaseFirestore.instance
-        .collection('students_data')
-        .doc('cse')
-        .collection('cs1_2020')
+    final QuerySnapshot snapshot = await FirebaseFirestore.instance
+        .collection('students')
         .where('email', isEqualTo: email)
         .limit(1)
         .get();
 
-    if (subcollectionSnapshot.docs.isNotEmpty) {
+    if (snapshot.docs.isNotEmpty) {
       final userData =
-          subcollectionSnapshot.docs.first.data() as Map<String, dynamic>?;
+          snapshot.docs.first.data() as Map<String, dynamic>?;
       if (userData != null) {
         final userName = userData['s_name'] as String?;
         final rollNo = userData['roll_no'] as String?;
