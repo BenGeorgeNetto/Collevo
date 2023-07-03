@@ -15,6 +15,10 @@ class _NewRequestState extends State<NewRequest> {
   String? _selectedItem2;
   String? _selectedItem3;
 
+  int? _selectedIndex1;
+  int? _selectedIndex2;
+  int? _selectedIndex3;
+
   final List<String> _dropdownItems1 = dropdownItems1;
   final Map<String, List<String>> _dropdownItems2 = dropdownItems2;
   final Map<String, List<String>> _dropdownItems3 = dropdownItems3;
@@ -52,8 +56,11 @@ class _NewRequestState extends State<NewRequest> {
                     onChanged: (newValue) {
                       setState(() {
                         _selectedItem1 = newValue;
+                        _selectedIndex1 = _dropdownItems1.indexOf(newValue!);
                         _selectedItem2 = null;
+                        _selectedIndex2 = null;
                         _selectedItem3 = null;
+                        _selectedIndex3 = null;
                       });
                     },
                     items: _dropdownItems1.map((String value) {
@@ -97,7 +104,10 @@ class _NewRequestState extends State<NewRequest> {
                           onChanged: (newValue) {
                             setState(() {
                               _selectedItem2 = newValue;
+                              _selectedIndex2 = _dropdownItems2[_selectedItem1]
+                                  ?.indexOf(newValue!);
                               _selectedItem3 = null;
+                              _selectedIndex3 = null;
                             });
                           },
                           items: _dropdownItems2[_selectedItem1]
@@ -146,6 +156,8 @@ class _NewRequestState extends State<NewRequest> {
                           onChanged: (newValue) {
                             setState(() {
                               _selectedItem3 = newValue;
+                              _selectedIndex3 = _dropdownItems3[_selectedItem2]
+                                  ?.indexOf(newValue!);
                             });
                           },
                           items: _dropdownItems3[_selectedItem2]
@@ -184,6 +196,10 @@ class _NewRequestState extends State<NewRequest> {
                       Text(
                         'Selected Activity Level: $_selectedItem3',
                       ),
+                      const SizedBox(height: 16.0),
+                      Text(
+                        'Activity ID: ${_selectedIndex1}_${_selectedIndex2}_$_selectedIndex3',
+                      )
                     ],
                   ),
                 ),
