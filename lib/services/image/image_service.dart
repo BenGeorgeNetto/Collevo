@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'dart:async';
 import 'dart:io';
 import 'package:edge_detection/edge_detection.dart';
@@ -35,9 +37,9 @@ class ImageService {
         androidCropBlackWhiteTitle: 'Black White',
         androidCropReset: 'Reset',
       );
-      print("success: $success");
+      // print("success: $success");
     } catch (e) {
-      print(e);
+      // print(e);
     }
 
     if (!await File(imagePath).exists()) {
@@ -61,9 +63,9 @@ class ImageService {
         androidCropBlackWhiteTitle: 'Black White',
         androidCropReset: 'Reset',
       );
-      print("success: $success");
+      // print("success: $success");
     } catch (e) {
-      print(e);
+      // print(e);
     }
 
     if (!await File(imagePath).exists()) {
