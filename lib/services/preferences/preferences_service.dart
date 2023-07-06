@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collevo/services/auth/auth_service.dart';
+import 'package:collevo/services/auth/auth_user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PreferencesService {
@@ -48,8 +50,7 @@ class PreferencesService {
         .get();
 
     if (snapshot.docs.isNotEmpty) {
-      final userData =
-          snapshot.docs.first.data() as Map<String, dynamic>?;
+      final userData = snapshot.docs.first.data() as Map<String, dynamic>?;
       if (userData != null) {
         final userName = userData['s_name'] as String?;
         final rollNo = userData['roll_no'] as String?;
@@ -68,5 +69,13 @@ class PreferencesService {
         return;
       }
     }
+  }
+
+  Future<void> setUid() async {
+    final preferences = await _getSharedPreferencesInstance();
+    final AuthService authService = AuthService.firebase();
+    final AuthUser? currentUser = authService.currentUser;
+
+    preferences.setString('uid', currentUser?.id ?? '');
   }
 }
