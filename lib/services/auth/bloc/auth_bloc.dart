@@ -58,6 +58,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       await provider.sendEmailVerification();
       emit(state);
     });
+
     on<AuthEventRegister>((event, emit) async {
       final email = event.email;
       final password = event.password;
@@ -75,6 +76,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         ));
       }
     });
+
     on<AuthEventInitialize>((event, emit) async {
       await provider.initialize();
       final user = provider.currentUser;
@@ -173,6 +175,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       return whitelist.contains(email);
     } catch (e) {
       return false;
+    }
+  }
+
+  Future<void> updateDocumentsWithEmail(String email, String uid) async {
+    final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection('students')
+        .where('email', isEqualTo: email)
+        .get();
+
+    final List<DocumentSnapshot> documents = querySnapshot.docs;
+    for (final DocumentSnapshot doc in documents) {
+      final DocumentReference docRef = doc.reference;
+      await docRef.update({'uid': uid});
     }
   }
 }
