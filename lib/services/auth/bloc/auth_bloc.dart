@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collevo/services/auth/auth_provider.dart';
+import 'package:collevo/services/auth/auth_service.dart';
 import 'package:collevo/services/auth/auth_user.dart';
 import 'package:collevo/services/preferences/preferences_service.dart';
 import 'package:equatable/equatable.dart';
@@ -68,6 +69,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           password: password,
         );
         await provider.sendEmailVerification();
+
+        await updateDocumentsWithEmail(email);
+
         emit(const AuthStateNeedsVerification(isLoading: false));
       } on Exception catch (e) {
         emit(AuthStateRegistering(
@@ -178,7 +182,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
 
-  Future<void> updateDocumentsWithEmail(String email, String uid) async {
+  Future<void> updateDocumentsWithEmail(String email) async {
+    final AuthService authService = AuthService.firebase();
+    final AuthUser? currentUser = authService.currentUser;
+
+    if (currentUser == null) {
+      print('User is not logged in.');
+      return;
+    }
+
+    final String uid = currentUser.id;
+
     final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection('students')
         .where('email', isEqualTo: email)
