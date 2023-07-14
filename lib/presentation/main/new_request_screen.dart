@@ -4,6 +4,10 @@
 import 'dart:io';
 
 import 'package:collevo/colors.dart';
+import 'package:collevo/enums/status_enum.dart';
+import 'package:collevo/models/request.dart';
+import 'package:collevo/services/cloud/firebase_storage_service.dart';
+import 'package:collevo/services/preferences/preferences_service.dart';
 import 'package:collevo/utilities/dialogs/remove_image_dialog.dart';
 import 'package:collevo/utilities/dialogs/upload_request_dialog.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +26,7 @@ class _NewRequestState extends State<NewRequest> {
   String? _selectedItem1;
   String? _selectedItem2;
   String? _selectedItem3;
+  String? _activityId;
 
   int? _selectedIndex1;
   int? _selectedIndex2;
@@ -86,6 +91,7 @@ class _NewRequestState extends State<NewRequest> {
                           _selectedIndex2 = null;
                           _selectedItem3 = null;
                           _selectedIndex3 = null;
+                          _activityId = null;
                         });
                       },
                       items: _dropdownItems1.map((String value) {
@@ -134,6 +140,7 @@ class _NewRequestState extends State<NewRequest> {
                                         ?.indexOf(newValue!);
                                 _selectedItem3 = null;
                                 _selectedIndex3 = null;
+                                _activityId = null;
                               });
                             },
                             items: _dropdownItems2[_selectedItem1]
@@ -186,6 +193,8 @@ class _NewRequestState extends State<NewRequest> {
                                 _selectedIndex3 =
                                     _dropdownItems3[_selectedItem2]
                                         ?.indexOf(newValue!);
+                                _activityId =
+                                    '${_selectedIndex1}_${_selectedIndex2}_$_selectedIndex3';
                               });
                             },
                             items: _dropdownItems3[_selectedItem2]
@@ -227,7 +236,7 @@ class _NewRequestState extends State<NewRequest> {
                         ),
                         const SizedBox(height: 16.0),
                         Text(
-                          'Activity ID: ${_selectedIndex1}_${_selectedIndex2}_$_selectedIndex3',
+                          'Activity ID: $_activityId',
                         ),
                         const SizedBox(height: 32.0),
                         Row(
@@ -273,7 +282,30 @@ class _NewRequestState extends State<NewRequest> {
                                   bool? confirm =
                                       await showUploadRequestDialog(context);
                                   if (confirm == true) {
-                                    // Implement action to upload request
+                                    final preferencesService =
+                                        PreferencesService();
+                                    final uid =
+                                        await preferencesService.getUid();
+                                    final tid =
+                                        await preferencesService.getTid();
+                                    String imageUrl =
+                                        await FirebaseStorageService
+                                            .uploadImage(
+                                      uid!,
+                                      _imagePath!,
+                                    );
+                                    final requestId = generateRequestId();
+                                    final Request request = Request(
+                                      requestId,
+                                      _activityId!,
+                                      uid,
+                                      DateTime.now(),
+                                      imageUrl,
+                                      tid!,
+                                      Status.pending,
+                                    );
+
+                                    // TODO: Implement uploading the request to DB
                                   }
                                 },
                                 style: ElevatedButton.styleFrom(
@@ -300,4 +332,12 @@ class _NewRequestState extends State<NewRequest> {
       ),
     );
   }
+}
+
+String generateRequestId() {
+  var dateTime = DateTime.now();
+  PreferencesService preferencesService = PreferencesService();
+  var name = preferencesService.getName();
+  var formattedDateTime = dateTime.toString().replaceAll(RegExp(r'[-:. ]'), '');
+  return 'req_${name}_$formattedDateTime';
 }
