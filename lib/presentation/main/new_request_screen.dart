@@ -1,15 +1,20 @@
 // ? Fetch user points for activityType before selecting dropdown3 or after
 // TODO: Add logic to show if user can apply for points from that activity type
 
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 
 import 'package:collevo/colors.dart';
 import 'package:collevo/enums/status_enum.dart';
+import 'package:collevo/helpers/loading/loading_screen.dart';
 import 'package:collevo/models/request.dart';
 import 'package:collevo/services/cloud/firebase_storage_service.dart';
+import 'package:collevo/services/cloud/request_upload_service.dart';
 import 'package:collevo/services/preferences/preferences_service.dart';
 import 'package:collevo/utilities/dialogs/remove_image_dialog.dart';
 import 'package:collevo/utilities/dialogs/upload_request_dialog.dart';
+import 'package:collevo/utilities/snackbars/upload_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:collevo/data/activities_lists.dart';
 import 'package:collevo/services/image/image_service.dart';
@@ -282,30 +287,48 @@ class _NewRequestState extends State<NewRequest> {
                                   bool? confirm =
                                       await showUploadRequestDialog(context);
                                   if (confirm == true) {
+                                    LoadingScreen().show(
+                                        context: context,
+                                        text: 'Uploading Request...');
                                     final preferencesService =
                                         PreferencesService();
+                                    final requestUploadService =
+                                        RequestUploadService();
                                     final uid =
                                         await preferencesService.getUid();
                                     final tid =
                                         await preferencesService.getTid();
-                                    String imageUrl =
-                                        await FirebaseStorageService
-                                            .uploadImage(
-                                      uid!,
-                                      _imagePath!,
-                                    );
-                                    final requestId = generateRequestId();
-                                    final Request request = Request(
-                                      requestId,
-                                      _activityId!,
-                                      uid,
-                                      DateTime.now(),
-                                      imageUrl,
-                                      tid!,
-                                      Status.pending,
-                                    );
 
-                                    // TODO: Implement uploading the request to DB
+                                    try {
+                                      String imageUrl =
+                                          await FirebaseStorageService
+                                              .uploadImage(
+                                        uid!,
+                                        _imagePath!,
+                                      );
+                                      final String requestId =
+                                          await generateRequestId();
+                                      final Request request = Request(
+                                        requestId,
+                                        _activityId!,
+                                        uid,
+                                        DateTime.now(),
+                                        imageUrl,
+                                        tid!,
+                                        Status.pending,
+                                      );
+                                      await requestUploadService
+                                          .uploadRequest(request);
+                                      showUploadSuccessSnackbar(context);
+                                      Future.delayed(const Duration(seconds: 2),
+                                          () {
+                                        Navigator.pop(context);
+                                      });
+                                    } catch (e) {
+                                      // print('Error: $e');
+                                      showUploadFailedSnackbar(context);
+                                    }
+                                    LoadingScreen().hide();
                                   }
                                 },
                                 style: ElevatedButton.styleFrom(
@@ -334,10 +357,10 @@ class _NewRequestState extends State<NewRequest> {
   }
 }
 
-String generateRequestId() {
+Future<String> generateRequestId() async {
   var dateTime = DateTime.now();
   PreferencesService preferencesService = PreferencesService();
-  var name = preferencesService.getName();
+  var name = await preferencesService.getName();
   var formattedDateTime = dateTime.toString().replaceAll(RegExp(r'[-:. ]'), '');
   return 'req_${name}_$formattedDateTime';
 }

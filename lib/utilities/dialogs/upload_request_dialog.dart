@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 Future<bool?> showUploadRequestDialog(BuildContext context) {
   return showGenericDialog<bool>(
     context: context,
-    title: 'Remove Image',
+    title: 'Upload Request',
     content: 'Are you sure you want to upload the request',
     optionsBuilder: () {
       return {

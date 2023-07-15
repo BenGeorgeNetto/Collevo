@@ -19,4 +19,15 @@ class Request {
     this.status,
   );
 
+  Map<String, dynamic> toMap() {
+    return {
+      'request_id': requestId,
+      'activity_id': activityId,
+      'created_by': createdBy,
+      'created_at': createdAt,
+      'image_url': imageUrl,
+      'assigned_to': assignedTo,
+      'status': status.index,
+    };
+  }
 }

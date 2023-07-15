@@ -70,12 +70,12 @@ class PreferencesService {
         final teacherId = userData['t_id'] as String?;
 
         final preferences = await SharedPreferences.getInstance();
-        preferences.setString('email', email);
-        preferences.setString('name', userName ?? '');
+        preferences.setString('email', email.trim());
+        preferences.setString('name', userName!.trim());
         preferences.setString('roll_no', rollNo ?? '');
-        preferences.setString('s_id', studentId ?? '');
-        preferences.setString('batch', batch ?? '');
-        preferences.setString('dept', dept ?? '');
+        preferences.setString('s_id', studentId!.trim());
+        preferences.setString('batch', batch!.trim());
+        preferences.setString('dept', dept!.trim());
         preferences.setString('t_id', teacherId ?? '');
 
         return;
