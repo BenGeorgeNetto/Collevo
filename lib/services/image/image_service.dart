@@ -3,6 +3,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:edge_detection/edge_detection.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -19,20 +20,17 @@ class ImageService {
     }
 
     if (!isCameraGranted) {
-      // Have no permission to camera
       return;
     }
 
-    // Generate filepath for saving
     String? imagePath = join((await getApplicationSupportDirectory()).path,
         "${(DateTime.now().millisecondsSinceEpoch / 1000).round()}.jpeg");
 
     try {
-      //Make sure to await the call to detectEdge.
       bool success = await EdgeDetection.detectEdge(
         imagePath,
         canUseGallery: true,
-        androidScanTitle: 'Scanning', // use custom localizations for android
+        androidScanTitle: 'Scanning',
         androidCropTitle: 'Crop',
         androidCropBlackWhiteTitle: 'Black White',
         androidCropReset: 'Reset',
@@ -51,28 +49,17 @@ class ImageService {
   }
 
   static Future<void> getImageFromGallery(
-      void Function(String?) setImagePath) async {
-    String? imagePath = join((await getApplicationSupportDirectory()).path,
-        "${(DateTime.now().millisecondsSinceEpoch / 1000).round()}.jpeg");
+      void Function(String?) setImagePathCallback) async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? pickedFile =
+        await picker.pickImage(source: ImageSource.gallery);
 
-    try {
-      //Make sure to await the call to detectEdgeFromGallery.
-      bool success = await EdgeDetection.detectEdgeFromGallery(
-        imagePath,
-        androidCropTitle: 'Crop', // use custom localizations for android
-        androidCropBlackWhiteTitle: 'Black White',
-        androidCropReset: 'Reset',
-      );
-      // print("success: $success");
-    } catch (e) {
-      // print(e);
+    if (pickedFile == null) {
+      setImagePathCallback(null);
+      return;
     }
 
-    if (!await File(imagePath).exists()) {
-      imagePath = null;
-    }
-
-    ImageService.imagePath = imagePath;
-    setImagePath(imagePath);
+    String imagePath = pickedFile.path;
+    setImagePathCallback(imagePath);
   }
 }
