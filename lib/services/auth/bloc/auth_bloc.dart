@@ -187,7 +187,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     final AuthUser? currentUser = authService.currentUser;
 
     if (currentUser == null) {
-      print('User is not logged in.');
+      // print('User is not logged in.');
       return;
     }
 
