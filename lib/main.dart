@@ -38,6 +38,7 @@ class _MyAppState extends State<MyApp> {
         theme: CustomTheme.getThemeData(),
         debugShowCheckedModeBanner: false,
         onGenerateRoute: _appRouter.onGenerateRoute,
+        onUnknownRoute: _appRouter.onUnknownRoute,
         home: const Landing(),
       ),
     );
