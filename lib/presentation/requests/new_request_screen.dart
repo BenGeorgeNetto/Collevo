@@ -230,20 +230,20 @@ class _NewRequestState extends State<NewRequest> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Selected Activity Type: $_selectedItem1',
-                        ),
-                        Text(
-                          'Selected Activity: $_selectedItem2',
-                        ),
-                        Text(
-                          'Selected Activity Level: $_selectedItem3',
-                        ),
-                        const SizedBox(height: 16.0),
-                        Text(
-                          'Activity ID: $_activityId',
-                        ),
-                        const SizedBox(height: 32.0),
+                        // Text(
+                        //   'Selected Activity Type: $_selectedItem1',
+                        // ),
+                        // Text(
+                        //   'Selected Activity: $_selectedItem2',
+                        // ),
+                        // Text(
+                        //   'Selected Activity Level: $_selectedItem3',
+                        // ),
+                        // const SizedBox(height: 16.0),
+                        // Text(
+                        //   'Activity ID: $_activityId',
+                        // ),
+                        // const SizedBox(height: 32.0),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
