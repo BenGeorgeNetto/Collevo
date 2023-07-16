@@ -2,11 +2,14 @@ import 'package:collevo/presentation/auth/signin_screen.dart';
 import 'package:collevo/presentation/main/about_screen.dart';
 import 'package:collevo/presentation/main/error_screen.dart';
 import 'package:collevo/presentation/main/home_screen.dart';
-import 'package:collevo/presentation/main/new_request_screen.dart';
+import 'package:collevo/presentation/requests/accepted_requests_screen.dart';
+import 'package:collevo/presentation/requests/new_request_screen.dart';
 import 'package:collevo/presentation/main/settings_screen.dart';
 import 'package:collevo/presentation/main/usage_instructions_screen.dart';
 import 'package:collevo/presentation/main/user_details_screen.dart';
-import 'package:collevo/presentation/main/view_requests_screen.dart';
+import 'package:collevo/presentation/requests/pending_requests_screen.dart';
+import 'package:collevo/presentation/requests/rejected_requests_screen.dart';
+import 'package:collevo/presentation/requests/view_requests_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
@@ -23,6 +26,18 @@ class AppRouter {
       case '/view_requests':
         return MaterialPageRoute(
           builder: (context) => const ViewRequests(),
+        );
+      case '/pending_requests':
+        return MaterialPageRoute(
+          builder: (context) => const PendingRequests(),
+        );
+      case '/accepted_requests':
+        return MaterialPageRoute(
+          builder: (context) => const AcceptedRequests(),
+        );
+      case '/rejected_requests':
+        return MaterialPageRoute(
+          builder: (context) => const RejectedRequests(),
         );
       case '/signin':
         return MaterialPageRoute(

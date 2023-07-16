@@ -8,16 +8,22 @@ class Request {
   final String imageUrl;
   final String assignedTo; // uid of teacher
   final Status status;
+  final String activityType;
+  final String activity;
+  final String activityLevel;
 
-  Request(
-    this.requestId,
-    this.activityId,
-    this.createdBy,
-    this.createdAt,
-    this.imageUrl,
-    this.assignedTo,
-    this.status,
-  );
+  Request({
+    required this.requestId,
+    required this.activityId,
+    required this.createdBy,
+    required this.createdAt,
+    required this.imageUrl,
+    required this.assignedTo,
+    required this.status,
+    required this.activityType,
+    required this.activity,
+    required this.activityLevel,
+  });
 
   Map<String, dynamic> toMap() {
     return {
@@ -28,6 +34,9 @@ class Request {
       'image_url': imageUrl,
       'assigned_to': assignedTo,
       'status': status.index,
+      'activity_type': activityType,
+      'activity': activity,
+      'activity_level': activityLevel,
     };
   }
 }

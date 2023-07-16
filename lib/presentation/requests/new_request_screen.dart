@@ -309,13 +309,16 @@ class _NewRequestState extends State<NewRequest> {
                                       final String requestId =
                                           await generateRequestId();
                                       final Request request = Request(
-                                        requestId,
-                                        _activityId!,
-                                        uid,
-                                        DateTime.now(),
-                                        imageUrl,
-                                        tid!,
-                                        Status.pending,
+                                        activityId: _activityId!,
+                                        assignedTo: tid!,
+                                        createdAt: DateTime.now(),
+                                        createdBy: uid,
+                                        imageUrl: imageUrl,
+                                        requestId: requestId,
+                                        status: Status.pending,
+                                        activityType: _selectedItem1!,
+                                        activity: _selectedItem2!,
+                                        activityLevel: _selectedItem3!,
                                       );
                                       await requestUploadService
                                           .uploadRequest(request);
