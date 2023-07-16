@@ -51,7 +51,29 @@ class CustomTheme {
       ),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
-          foregroundColor: CustomColors.surf,
+            foregroundColor: CustomColors.surf,
+            textStyle: const TextStyle(
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w500,
+              fontSize: 14,
+            )),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          // foregroundColor: CustomColors.buttonBlue,
+          // backgroundColor: CustomColors.voidColor,
+          padding: const EdgeInsets.symmetric(
+            vertical: 12.0,
+            horizontal: 24.0,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          textStyle: const TextStyle(
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.w500,
+            fontSize: 14,
+          ),
         ),
       ),
       colorScheme: ColorScheme.fromSwatch(

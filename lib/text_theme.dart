@@ -25,6 +25,7 @@ class CustomTextTheme extends TextTheme {
           ),
           bodyLarge: const TextStyle(
             fontFamily: 'Poppins',
+            fontSize: 24,
           ),
           bodyMedium: const TextStyle(
             fontSize: 18,
@@ -48,6 +49,15 @@ class CustomTextTheme extends TextTheme {
             fontFamily: 'Poppins',
             fontSize: 20,
             fontWeight: FontWeight.w500,
+          ),
+          labelLarge: const TextStyle(fontFamily: 'Poppins', fontSize: 24),
+          labelMedium: const TextStyle(
+            fontFamily: 'Poppins',
+            fontSize: 18,
+          ),
+          labelSmall: const TextStyle(
+            fontFamily: 'Poppins',
+            fontSize: 14,
           ),
         );
 }
