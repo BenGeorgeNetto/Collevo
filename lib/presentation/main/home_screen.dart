@@ -81,9 +81,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 ]),
               ),
             ),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
+              children: [
                 HomeCard(
                   cardText: "Request Activity Points",
                   routeName: '/new_request',

@@ -51,8 +51,8 @@ class AboutScreen extends StatelessWidget {
                       EmailUtils.sendEmail(
                           emailAddress: 'bengeorgenetto.work@gmail.com');
                     },
-                    child: Row(
-                      children: const [
+                    child: const Row(
+                      children: [
                         Icon(Icons.email),
                         SizedBox(
                           width: 16.0,

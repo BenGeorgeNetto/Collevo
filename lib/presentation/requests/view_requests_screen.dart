@@ -18,9 +18,9 @@ class _ViewRequestsState extends State<ViewRequests> {
           title: const Text("My Requests"),
         ),
         bottomNavigationBar: const BottomNavBar(),
-        body: Column(
+        body: const Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: const [
+          children: [
             RequestsHomeCard(
               cardText: "Pending Requests",
               routeName: '/pending_requests',
