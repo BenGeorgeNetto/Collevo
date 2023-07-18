@@ -185,28 +185,28 @@ Map<String, List<String>> dropdownItems3 = {
     'Level 4',
     'Level 5'
   ],
-  'Literary Arts : Participation': [
+  'Literary Arts: Participation': [
     'Level 1',
     'Level 2',
     'Level 3',
     'Level 4',
     'Level 5'
   ],
-  'Literary Arts : First Prize': [
+  'Literary Arts: First Prize': [
     'Level 1',
     'Level 2',
     'Level 3',
     'Level 4',
     'Level 5'
   ],
-  'Literary Arts : Second Prize': [
+  'Literary Arts: Second Prize': [
     'Level 1',
     'Level 2',
     'Level 3',
     'Level 4',
     'Level 5'
   ],
-  'Literary Arts : Third Prize': [
+  'Literary Arts: Third Prize': [
     'Level 1',
     'Level 2',
     'Level 3',
