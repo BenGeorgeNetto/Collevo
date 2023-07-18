@@ -10,8 +10,14 @@ class RequestsFetchService {
 
       final querySnapshot = await FirebaseFirestore.instance
           .collection('requests')
-          .where('created_by', isEqualTo: currentUserUID)
-          .where('status', isEqualTo: status.index) // status.index gives the integer value of the Status enum
+          .where(
+            'created_by',
+            isEqualTo: currentUserUID,
+          )
+          .where(
+            'status',
+            isEqualTo: status.index,
+          )
           .get();
 
       final List<Request> myRequests = querySnapshot.docs.map((doc) {
