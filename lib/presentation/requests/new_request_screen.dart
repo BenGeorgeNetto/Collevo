@@ -1,6 +1,3 @@
-// ? Fetch user points for activityType before selecting dropdown3 or after
-// TODO: Add logic to show if user can apply for points from that activity type
-
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:io';
@@ -110,7 +107,7 @@ class _NewRequestState extends State<NewRequest> {
                           child: Text(
                             value,
                             style: Theme.of(context).textTheme.headlineSmall,
-                            overflow: TextOverflow.visible,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         );
                       }).toList(),
@@ -159,7 +156,7 @@ class _NewRequestState extends State<NewRequest> {
                                 value: value,
                                 child: Text(
                                   value,
-                                  overflow: TextOverflow.visible,
+                                  overflow: TextOverflow.ellipsis,
                                   style:
                                       Theme.of(context).textTheme.headlineSmall,
                                 ),
@@ -220,7 +217,7 @@ class _NewRequestState extends State<NewRequest> {
                                 value: value,
                                 child: Text(
                                   value,
-                                  overflow: TextOverflow.visible,
+                                  overflow: TextOverflow.ellipsis,
                                   style:
                                       Theme.of(context).textTheme.headlineSmall,
                                 ),
