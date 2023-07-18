@@ -1,12 +1,12 @@
 // ignore_for_file: avoid_print
 
-import 'package:collevo/services/cloud/requests_fetch_service.dart';
+import 'package:collevo/services/cloud/activity_points_service.dart';
 
 // Somewhere in your code where you want to access the activity points
 void getPersonActivityPoints() async {
-  final RequestsFetchService requestsService = RequestsFetchService();
+  final ActivityPointsService activityPointsService = ActivityPointsService();
   final Map<String, int> activityPoints =
-      await requestsService.fetchActivityPoints();
+      await activityPointsService.getActivityPoints();
 
   int activityPoints_0_0 = activityPoints["0_0"] ?? 0;
   int activityPoints_1_0 = activityPoints["1_0"] ?? 0;

@@ -9,6 +9,7 @@ import 'package:collevo/colors.dart';
 import 'package:collevo/enums/status_enum.dart';
 import 'package:collevo/helpers/loading/loading_screen.dart';
 import 'package:collevo/models/request.dart';
+import 'package:collevo/services/cloud/activity_points_service.dart';
 import 'package:collevo/services/cloud/firebase_storage_service.dart';
 import 'package:collevo/services/cloud/request_upload_service.dart';
 import 'package:collevo/services/preferences/preferences_service.dart';
@@ -40,6 +41,10 @@ class _NewRequestState extends State<NewRequest> {
   final List<String> _dropdownItems1 = dropdownItems1;
   final Map<String, List<String>> _dropdownItems2 = dropdownItems2;
   final Map<String, List<String>> _dropdownItems3 = dropdownItems3;
+
+  bool canUploadRequest = false;
+
+  final ActivityPointsService _activityPointsService = ActivityPointsService();
 
   Future<void> getImageFromCamera() async {
     await ImageService.getImageFromCamera((String? imagePath) {
@@ -192,7 +197,7 @@ class _NewRequestState extends State<NewRequest> {
                             hint: const Text('Select Activity Level'),
                             value: _selectedItem3,
                             isExpanded: true,
-                            onChanged: (newValue) {
+                            onChanged: (newValue) async {
                               setState(() {
                                 _selectedItem3 = newValue;
                                 _selectedIndex3 =
@@ -200,6 +205,13 @@ class _NewRequestState extends State<NewRequest> {
                                         ?.indexOf(newValue!);
                                 _activityId =
                                     '${_selectedIndex1}_${_selectedIndex2}_$_selectedIndex3';
+                              });
+
+                              canUploadRequest = await _activityPointsService
+                                  .checkIfCanInsertActivityPoints(_activityId!);
+
+                              setState(() {
+                                canUploadRequest = canUploadRequest;
                               });
                             },
                             items: _dropdownItems3[_selectedItem2]
@@ -244,19 +256,28 @@ class _NewRequestState extends State<NewRequest> {
                         //   'Activity ID: $_activityId',
                         // ),
                         // const SizedBox(height: 32.0),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            ElevatedButton(
-                              onPressed: getImageFromCamera,
-                              child: const Text('Take Photo'),
-                            ),
-                            const SizedBox(height: 16.0),
-                            ElevatedButton(
-                              onPressed: getImageFromGallery,
-                              child: const Text('Upload Photo'),
-                            ),
-                          ],
+                        Visibility(
+                          visible: canUploadRequest,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              ElevatedButton(
+                                onPressed: getImageFromCamera,
+                                child: const Text('Take Photo'),
+                              ),
+                              const SizedBox(height: 16.0),
+                              ElevatedButton(
+                                onPressed: getImageFromGallery,
+                                child: const Text('Upload Photo'),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Visibility(
+                          visible: !canUploadRequest,
+                          child: const Text(
+                            'Cannot upload request of this type as you have exceeded the points that you can get from this activity type.',
+                          ),
                         ),
                         Visibility(
                           visible: _imagePath != null,
