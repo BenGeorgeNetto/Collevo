@@ -27,7 +27,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> fetchUserDetails() async {
-    preferencesService.setUid();
     email = await preferencesService.getEmail();
     name = await preferencesService.getName();
     rollNo = await preferencesService.getRollNo();

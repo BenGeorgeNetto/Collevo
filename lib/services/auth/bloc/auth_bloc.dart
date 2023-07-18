@@ -134,6 +134,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             ),
           );
           await preferencesService.setUserDetails(email);
+          preferencesService.setUid();
           emit(AuthStateLoggedIn(
             user: user,
             isLoading: false,
