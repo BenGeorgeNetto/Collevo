@@ -88,8 +88,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   routeName: '/new_request',
                 ),
                 HomeCard(
-                  cardText: "Usage instructions",
-                  routeName: '/usage_instructions',
+                  cardText: "User Stats",
+                  routeName: '/stats',
                 ),
               ],
             ),

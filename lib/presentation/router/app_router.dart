@@ -2,6 +2,7 @@ import 'package:collevo/presentation/auth/signin_screen.dart';
 import 'package:collevo/presentation/main/about_screen.dart';
 import 'package:collevo/presentation/main/error_screen.dart';
 import 'package:collevo/presentation/main/home_screen.dart';
+import 'package:collevo/presentation/main/stats_screen.dart';
 import 'package:collevo/presentation/requests/accepted_requests_screen.dart';
 import 'package:collevo/presentation/requests/new_request_screen.dart';
 import 'package:collevo/presentation/main/settings_screen.dart';
@@ -59,6 +60,10 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => const AboutScreen(),
         );
+        case '/stats':
+        return MaterialPageRoute(
+          builder: (context) => const StatsScreen(),
+        );  
       default:
         return MaterialPageRoute(
           builder: (context) => const ErrorScreen(),
