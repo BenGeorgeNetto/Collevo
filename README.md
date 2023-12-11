@@ -2,7 +2,7 @@
 
 ## Activity Point Management App
 
-### S6 Mini Project
+### Engineering Final Year Project
 
 This is the students client for the activity point managament app.
 
