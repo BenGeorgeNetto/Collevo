@@ -248,12 +248,17 @@ Map<String, List<String>> dropdownItems3 = {
     'Level 4',
     'Level 5'
   ],
+  'MOOC with Certification': ['MOOC with Certification'],
+  'Foreign Language Skills': ['Foreign Language Skills'],
   'Competitions by Professional Societies': [
     'Level 1',
     'Level 2',
     'Level 3',
     'Level 4',
     'Level 5'
+  ],
+  'Attending Seminar/Workshop other than with tech fest': [
+    'Attending Seminar/Workshop other than with tech fest'
   ],
   'Paper Presentation at IIT/NIT/Reputed Institution': [
     'Participation',
@@ -275,6 +280,7 @@ Map<String, List<String>> dropdownItems3 = {
     'Participation',
     'Certificate of Recogniton'
   ],
+  'Industrial Training/Internship': ['Industrial Training/Internship'],
   'IV/Exhibition Visit': ['IV', 'Exhibition Visit'],
   'Startup': ['Company registered legally'],
   'Patent': [
