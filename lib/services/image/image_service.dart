@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 
 class ImageService {
   static String? imagePath;
@@ -44,6 +45,18 @@ class ImageService {
       imagePath = null;
     }
 
+    final fileSize = await File(imagePath!).length();
+    const threshold = 2048 * 2048;
+    final quality = fileSize > threshold ? 50 : 80;
+
+    final compressedImage = await FlutterImageCompress.compressAndGetFile(
+      imagePath,
+      imagePath.replaceFirst('.jpeg', '_compressed.jpeg'),
+      quality: quality,
+    );
+
+    imagePath = compressedImage?.path;
+
     ImageService.imagePath = imagePath;
     setImagePath(imagePath);
   }
@@ -59,7 +72,20 @@ class ImageService {
       return;
     }
 
-    String imagePath = pickedFile.path;
+    String? imagePath = pickedFile.path;
+
+    final fileSize = await File(imagePath).length();
+    const threshold = 2048 * 2048;
+    final quality = fileSize > threshold ? 50 : 80;
+
+    final compressedImage = await FlutterImageCompress.compressAndGetFile(
+      imagePath,
+      imagePath.replaceFirst('.jpeg', '_compressed.jpeg'),
+      quality: quality,
+    );
+
+    imagePath = compressedImage?.path;
+    ImageService.imagePath = imagePath;
     setImagePathCallback(imagePath);
   }
 }
