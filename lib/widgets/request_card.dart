@@ -10,8 +10,8 @@ class RequestCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var requestIdSplit = request.requestId.split('_');
-    final requestIdSubstring = requestIdSplit[2];
+    // var requestIdSplit = request.requestId.split('_');
+    // final requestIdSubstring = requestIdSplit[2];
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Card(
@@ -20,22 +20,22 @@ class RequestCard extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Text('${request.activity} - ${request.activityLevel}'),
           ),
-          subtitle: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Request ID:',
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-                Text(
-                  requestIdSubstring,
-                  style: Theme.of(context).textTheme.labelSmall,
-                ),
-              ],
-            ),
-          ),
+          // subtitle: Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child: Column(
+          //     crossAxisAlignment: CrossAxisAlignment.start,
+          //     children: [
+          //       Text(
+          //         'Request ID:',
+          //         style: Theme.of(context).textTheme.bodyMedium,
+          //       ),
+          //       Text(
+          //         requestIdSubstring,
+          //         style: Theme.of(context).textTheme.labelSmall,
+          //       ),
+          //     ],
+          //   ),
+          // ),
           collapsedShape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
           ),
@@ -64,7 +64,7 @@ class RequestCard extends StatelessWidget {
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         Text(
-                          '${request.createdAt}',
+                          '${request.createdAt.day.toString().padLeft(2, '0')}:${request.createdAt.month.toString().padLeft(2, '0')}:${request.createdAt.year}    ${request.createdAt.hour.toString().padLeft(2, '0')}:${request.createdAt.minute.toString().padLeft(2, '0')}',
                           style: Theme.of(context).textTheme.labelSmall,
                         ),
                         const SizedBox(height: 8),
@@ -95,14 +95,14 @@ class RequestCard extends StatelessWidget {
                           style: Theme.of(context).textTheme.labelSmall,
                         ),
                         const SizedBox(height: 8),
-                        Text(
-                          'Activity ID:',
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                        Text(
-                          request.activityId,
-                          style: Theme.of(context).textTheme.labelSmall,
-                        ),
+                        // Text(
+                        //   'Activity ID:',
+                        //   style: Theme.of(context).textTheme.bodyMedium,
+                        // ),
+                        // Text(
+                        //   request.activityId,
+                        //   style: Theme.of(context).textTheme.labelSmall,
+                        // ),
                       ],
                     ),
                   ),
