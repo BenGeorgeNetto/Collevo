@@ -78,9 +78,12 @@ class ImageService {
     const threshold = 2048 * 2048;
     final quality = fileSize > threshold ? 50 : 80;
 
+    final compressedImagePath =
+        '${imagePath.substring(0, imagePath.lastIndexOf('.'))}_compressed.jpeg';
+
     final compressedImage = await FlutterImageCompress.compressAndGetFile(
       imagePath,
-      imagePath.replaceFirst('.jpeg', '_compressed.jpeg'),
+      compressedImagePath,
       quality: quality,
     );
 
