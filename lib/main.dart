@@ -1,14 +1,16 @@
 import 'package:collevo/cubit/bottom_nav_bar_cubit.dart';
-import 'package:collevo/landing.dart';
-import 'package:collevo/presentation/router/app_router.dart';
+import 'package:collevo/presentation/main/error_screen.dart';
+import 'package:collevo/presentation/router/routes.dart';
 import 'package:collevo/services/auth/bloc/auth_bloc.dart';
 import 'package:collevo/services/auth/firebase_auth_provider.dart';
 import 'package:collevo/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  setPathUrlStrategy();
   runApp(const MyApp());
 }
 
@@ -20,7 +22,11 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final AppRouter _appRouter = AppRouter();
+  @override
+  void initState() {
+    super.initState();
+    AppRouter.defineRoutes();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,16 +43,13 @@ class _MyAppState extends State<MyApp> {
         title: 'Collevo',
         theme: CustomTheme.getThemeData(),
         debugShowCheckedModeBanner: false,
-        onGenerateRoute: _appRouter.onGenerateRoute,
-        onUnknownRoute: _appRouter.onUnknownRoute,
-        home: const Landing(),
+        onGenerateRoute: AppRouter.router.generator,
+        onUnknownRoute: (unknownRoutes) {
+          return MaterialPageRoute(
+            builder: (context) => const ErrorScreen(),
+          );
+        },
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _appRouter.dispose();
-    super.dispose();
   }
 }
