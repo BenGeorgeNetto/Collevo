@@ -297,6 +297,12 @@ class _NewRequestState extends State<NewRequest> {
                                     });
                                   }
                                 },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor:
+                                      darkColorScheme.errorContainer,
+                                  foregroundColor:
+                                      darkColorScheme.onErrorContainer,
+                                ),
                                 child: const Text('Remove Photo'),
                               ),
                               const SizedBox(height: 16.0),
