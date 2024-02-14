@@ -25,7 +25,7 @@ class HomeCard extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12.0),
-            color: CustomColors.blueGray,
+            color: darkColorScheme.surface,
           ),
           height: containerWidth,
           width: containerWidth,
@@ -38,6 +38,7 @@ class HomeCard extends StatelessWidget {
                 child: Text(
                   cardText,
                   style: Theme.of(context).textTheme.bodyMedium,
+                  textAlign: TextAlign.center,
                 ),
               ),
             ),
