@@ -16,7 +16,7 @@ class AboutScreen extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
                 "App Name",
@@ -34,7 +34,7 @@ class AboutScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
               Text(
-                '1.0.0-alpha1',
+                '1.0.0-alpha2',
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               const SizedBox(
@@ -44,24 +44,28 @@ class AboutScreen extends StatelessWidget {
                 "Contact Developer",
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
-              Row(
-                children: [
-                  OutlinedButton(
-                    onPressed: () {
-                      EmailUtils.sendEmail(
-                          emailAddress: 'bengeorgenetto.work@gmail.com');
-                    },
-                    child: const Row(
-                      children: [
-                        Icon(Icons.email),
-                        SizedBox(
-                          width: 16.0,
-                        ),
-                        Text("Contact via Email"),
-                      ],
+              Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    OutlinedButton(
+                      onPressed: () {
+                        EmailUtils.sendEmail(
+                            emailAddress: 'bengeorgenetto.work@gmail.com');
+                      },
+                      child: const Row(
+                        children: [
+                          Icon(Icons.email),
+                          SizedBox(
+                            width: 16.0,
+                          ),
+                          Text("Contact via Email"),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               const SizedBox(
                 height: 16.0,
