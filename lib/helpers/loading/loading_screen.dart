@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:collevo/colors.dart';
 import 'package:collevo/helpers/loading/loading_screen_controller.dart';
 import 'package:flutter/material.dart';
 
@@ -46,7 +45,7 @@ class LoadingScreen {
     final overlay = OverlayEntry(
       builder: (context) {
         return Material(
-          color: CustomColors.blueGray.withAlpha(50),
+          color: Theme.of(context).colorScheme.scrim.withAlpha(50),
           elevation: 4.0,
           child: Center(
             child: Container(
@@ -56,7 +55,7 @@ class LoadingScreen {
                 minWidth: size.width * 0.5,
               ),
               decoration: BoxDecoration(
-                color: CustomColors.voidColor,
+                color: Theme.of(context).colorScheme.surface,
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Padding(

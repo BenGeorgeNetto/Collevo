@@ -6,8 +6,8 @@ void showGenericSnackbar(BuildContext context, String message) {
     SnackBar(
       content: Text(
         message,
-        style: const TextStyle(
-          color: CustomColors.voidColor,
+        style: TextStyle(
+          color: darkColorScheme.background,
           fontSize: 16,
         ),
       ),
