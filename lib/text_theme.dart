@@ -4,59 +4,59 @@ class CustomTextTheme extends TextTheme {
   const CustomTextTheme()
       : super(
           displayLarge: const TextStyle(
-            fontFamily: 'FiraCode',
+            fontFamily: 'OpenSans',
           ),
           displayMedium: const TextStyle(
-            fontFamily: 'FiraCode',
+            fontFamily: 'OpenSans',
           ),
           displaySmall: const TextStyle(
-            fontFamily: 'FiraCode',
+            fontFamily: 'OpenSans',
           ),
           titleLarge: const TextStyle(
-            fontFamily: 'FiraCode',
+            fontFamily: 'OpenSans',
           ),
           titleMedium: const TextStyle(
-            fontFamily: 'FiraCode',
+            fontFamily: 'OpenSans',
             fontSize: 24,
             fontWeight: FontWeight.w500,
           ),
           titleSmall: const TextStyle(
-            fontFamily: 'FiraCode',
+            fontFamily: 'OpenSans',
           ),
           bodyLarge: const TextStyle(
-            fontFamily: 'FiraCode',
+            fontFamily: 'OpenSans',
             fontSize: 24,
           ),
           bodyMedium: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w500,
-            fontFamily: 'FiraCode',
+            fontFamily: 'OpenSans',
           ),
           bodySmall: const TextStyle(
-            fontFamily: 'FiraCode',
+            fontFamily: 'OpenSans',
           ),
           headlineLarge: const TextStyle(
-            fontFamily: 'FiraCode',
+            fontFamily: 'OpenSans',
             fontSize: 36,
             fontWeight: FontWeight.w500,
           ),
           headlineMedium: const TextStyle(
-            fontFamily: 'FiraCode',
+            fontFamily: 'OpenSans',
             fontSize: 28,
             fontWeight: FontWeight.w500,
           ),
           headlineSmall: const TextStyle(
-            fontFamily: 'FiraCode',
+            fontFamily: 'OpenSans',
             fontSize: 20,
             fontWeight: FontWeight.w500,
           ),
-          labelLarge: const TextStyle(fontFamily: 'FiraCode', fontSize: 24),
+          labelLarge: const TextStyle(fontFamily: 'OpenSans', fontSize: 24,),
           labelMedium: const TextStyle(
-            fontFamily: 'FiraCode',
+            fontFamily: 'OpenSans',
             fontSize: 18,
           ),
           labelSmall: const TextStyle(
-            fontFamily: 'FiraCode',
+            fontFamily: 'OpenSans',
             fontSize: 14,
           ),
         );

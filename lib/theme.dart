@@ -51,7 +51,7 @@ class CustomTheme {
             borderRadius: BorderRadius.circular(10.2),
           ),
           textStyle: const TextStyle(
-            fontFamily: 'FiraCode',
+            fontFamily: 'OpenSans',
             fontWeight: FontWeight.w600,
             fontSize: 18,
           ),
@@ -61,7 +61,7 @@ class CustomTheme {
         style: TextButton.styleFrom(
             // foregroundColor: CustomColors.surf,
             textStyle: const TextStyle(
-          fontFamily: 'FiraCode',
+          fontFamily: 'OpenSans',
           fontWeight: FontWeight.w500,
           fontSize: 14,
         )),
@@ -78,7 +78,7 @@ class CustomTheme {
             borderRadius: BorderRadius.circular(12),
           ),
           textStyle: const TextStyle(
-            fontFamily: 'FiraCode',
+            fontFamily: 'OpenSans',
             fontWeight: FontWeight.w500,
             fontSize: 14,
           ),
