@@ -35,6 +35,30 @@ class ActivityPointsService {
     }
   }
 
+  Future<int?> getTotalActivityPoints() async {
+    final PreferencesService preferencesService = PreferencesService();
+    final String? email = await preferencesService.getEmail();
+    try {
+      FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+      DocumentSnapshot<Map<String, dynamic>> studentDocument =
+          await firestore.collection('students').doc(email).get();
+
+      if (studentDocument.exists) {
+        // print('Document data: ${studentDocument.data()}');
+        Map<String, dynamic> data = studentDocument.data()!;
+        int totalActivityPoints = data['total_activity_points'] as int;
+
+        return totalActivityPoints;
+      } else {
+        // print('Document does not exist on the database');
+        return null;
+      }
+    } catch (e) {
+      return null;
+    }
+  }
+
   Future<bool> checkIfCanInsertActivityPoints(String activityId) async {
     var activityIdSplit = activityId.split('_');
     var activityType = activityIdSplit[0];

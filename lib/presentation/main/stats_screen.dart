@@ -14,7 +14,7 @@ class StatsScreen extends StatefulWidget {
 class _StatsScreenState extends State<StatsScreen> {
   Map<String, int> activityPointsData = {};
   Map<String, dynamic> activityTypesData = {};
-  int totalSum = 0;
+  int totalActivityPoints = 0;
 
   @override
   void initState() {
@@ -22,17 +22,14 @@ class _StatsScreenState extends State<StatsScreen> {
     fetchStats();
   }
 
-  void fetchStats() {
+  Future<void> fetchStats() async {
     final activityPointsService = ActivityPointsService();
     activityPointsService.getActivityPoints().then((value) {
       activityPointsData = value;
-
-      // Compute total sum of all points
-      totalSum =
-          activityPointsData.values.fold(0, (sum, points) => sum + points);
-
       setState(() {});
     });
+
+    totalActivityPoints = await activityPointsService.getTotalActivityPoints() ?? 0;
 
     activityTypesData = dropdownItems2;
 
@@ -49,7 +46,7 @@ class _StatsScreenState extends State<StatsScreen> {
         children: [
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Text('Total Activity Points: ${(totalSum / 2).round()}',
+            child: Text('Total Activity Points: $totalActivityPoints}',
                 style: Theme.of(context).textTheme.bodyLarge),
           ),
           Expanded(
