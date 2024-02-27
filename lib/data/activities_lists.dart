@@ -214,23 +214,23 @@ Map<String, List<String>> dropdownItems3 = {
     'Level 5'
   ],
   'Student Professional Bodies': [
-    'Core Cordinator',
-    'Sub Cordinator',
+    'Core Coordinator',
+    'Sub Coordinator',
     'Volunteer',
   ],
   'Department Association': [
-    'Core Cordinator',
-    'Sub Cordinator',
+    'Core Coordinator',
+    'Sub Coordinator',
     'Volunteer',
   ],
   'Festival/Tech Event/Sports': [
-    'Core Cordinator',
-    'Sub Cordinator',
+    'Core Coordinator',
+    'Sub Coordinator',
     'Volunteer',
   ],
   'Hobby Clubs': [
-    'Core Cordinator',
-    'Sub Cordinator',
+    'Core Coordinator',
+    'Sub Coordinator',
     'Volunteer',
   ],
   'Student Representative (Senate)': [
@@ -262,23 +262,23 @@ Map<String, List<String>> dropdownItems3 = {
   ],
   'Paper Presentation at IIT/NIT/Reputed Institution': [
     'Participation',
-    'Certificate of Recogniton'
+    'Certificate of Recognition'
   ],
   'Paper publication in International/National Journals': [
     'Participation',
-    'Certificate of Recogniton'
+    'Certificate of Recognition'
   ],
   'Paper Presentation at other places': [
     'Participation',
-    'Certificate of Recogniton'
+    'Certificate of Recognition'
   ],
   'Poster Presentation at IIT/NIT/Reputed Institution': [
     'Participation',
-    'Certificate of Recogniton'
+    'Certificate of Recognition'
   ],
   'Poster Presentation at other places': [
     'Participation',
-    'Certificate of Recogniton'
+    'Certificate of Recognition'
   ],
   'Industrial Training/Internship': ['Industrial Training/Internship'],
   'IV/Exhibition Visit': ['IV', 'Exhibition Visit'],
