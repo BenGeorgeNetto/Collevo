@@ -98,120 +98,144 @@ Map<String, List<String>> dropdownItems3 = {
   'Participation in Republic Day Parade camp': ['NSS', 'NCC'],
   'International Youth Exchange Program': ['NSS', 'NCC'],
   'Sports: Participation': [
-    'Level 1',
-    'Level 2',
-    'Level 3',
-    'Level 4',
-    'Level 5'
+    'College Level',
+    'Zonal Level',
+    'State/University Level',
+    'National Level',
+    'International Level'
   ],
   'Sports: First Prize': [
-    'Level 1',
-    'Level 2',
-    'Level 3',
-    'Level 4',
-    'Level 5'
+    'College Level',
+    'Zonal Level',
+    'State/University Level',
+    'National Level',
+    'International Level'
   ],
   'Sports: Second Prize': [
-    'Level 1',
-    'Level 2',
-    'Level 3',
-    'Level 4',
-    'Level 5'
+    'College Level',
+    'Zonal Level',
+    'State/University Level',
+    'National Level',
+    'International Level'
   ],
   'Sports: Third Prize': [
-    'Level 1',
-    'Level 2',
-    'Level 3',
-    'Level 4',
-    'Level 5'
+    'College Level',
+    'Zonal Level',
+    'State/University Level',
+    'National Level',
+    'International Level'
   ],
   'Games: Participation': [
-    'Level 1',
-    'Level 2',
-    'Level 3',
-    'Level 4',
-    'Level 5'
+    'College Level',
+    'Zonal Level',
+    'State/University Level',
+    'National Level',
+    'International Level'
   ],
-  'Games: First Prize': ['Level 1', 'Level 2', 'Level 3', 'Level 4', 'Level 5'],
+  'Games: First Prize': [
+    'College Level',
+    'Zonal Level',
+    'State/University Level',
+    'National Level',
+    'International Level'
+  ],
   'Games: Second Prize': [
-    'Level 1',
-    'Level 2',
-    'Level 3',
-    'Level 4',
-    'Level 5'
+    'College Level',
+    'Zonal Level',
+    'State/University Level',
+    'National Level',
+    'International Level'
   ],
-  'Games: Third Prize': ['Level 1', 'Level 2', 'Level 3', 'Level 4', 'Level 5'],
+  'Games: Third Prize': [
+    'College Level',
+    'Zonal Level',
+    'State/University Level',
+    'National Level',
+    'International Level'
+  ],
   'Music: Participation': [
-    'Level 1',
-    'Level 2',
-    'Level 3',
-    'Level 4',
-    'Level 5'
+    'College Level',
+    'Zonal Level',
+    'State/University Level',
+    'National Level',
+    'International Level'
   ],
-  'Music: First Prize': ['Level 1', 'Level 2', 'Level 3', 'Level 4', 'Level 5'],
+  'Music: First Prize': [
+    'College Level',
+    'Zonal Level',
+    'State/University Level',
+    'National Level',
+    'International Level'
+  ],
   'Music: Second Prize': [
-    'Level 1',
-    'Level 2',
-    'Level 3',
-    'Level 4',
-    'Level 5'
+    'College Level',
+    'Zonal Level',
+    'State/University Level',
+    'National Level',
+    'International Level'
   ],
-  'Music: Third Prize': ['Level 1', 'Level 2', 'Level 3', 'Level 4', 'Level 5'],
+  'Music: Third Prize': [
+    'College Level',
+    'Zonal Level',
+    'State/University Level',
+    'National Level',
+    'International Level'
+  ],
   'Performing Arts: Participation': [
-    'Level 1',
-    'Level 2',
-    'Level 3',
-    'Level 4',
-    'Level 5'
+    'College Level',
+    'Zonal Level',
+    'State/University Level',
+    'National Level',
+    'International Level'
   ],
   'Performing Arts: First Prize': [
-    'Level 1',
-    'Level 2',
-    'Level 3',
-    'Level 4',
-    'Level 5'
+    'College Level',
+    'Zonal Level',
+    'State/University Level',
+    'National Level',
+    'International Level'
   ],
   'Performing Arts: Second Prize': [
-    'Level 1',
-    'Level 2',
-    'Level 3',
-    'Level 4',
-    'Level 5'
+    'College Level',
+    'Zonal Level',
+    'State/University Level',
+    'National Level',
+    'International Level'
   ],
   'Performing Arts: Third Prize': [
-    'Level 1',
-    'Level 2',
-    'Level 3',
-    'Level 4',
-    'Level 5'
+    'College Level',
+    'Zonal Level',
+    'State/University Level',
+    'National Level',
+    'International Level'
   ],
   'Literary Arts: Participation': [
-    'Level 1',
-    'Level 2',
-    'Level 3',
-    'Level 4',
-    'Level 5'
+    'College Level',
+    'Zonal Level',
+    'State/University Level',
+    'National Level',
+    'International Level'
   ],
   'Literary Arts: First Prize': [
-    'Level 1',
-    'Level 2',
-    'Level 3',
-    'Level 4',
-    'Level 5'
+    'College Level',
+    'Zonal Level',
+    'State/University Level',
+    'National Level',
+    'International Level'
   ],
   'Literary Arts: Second Prize': [
-    'Level 1',
-    'Level 2',
-    'Level 3',
-    'Level 4',
-    'Level 5'
+    'College Level',
+    'Zonal Level',
+    'State/University Level',
+    'National Level',
+    'International Level'
   ],
   'Literary Arts: Third Prize': [
-    'Level 1',
-    'Level 2',
-    'Level 3',
-    'Level 4',
-    'Level 5'
+    'College Level',
+    'Zonal Level',
+    'State/University Level',
+    'National Level',
+    'International Level'
   ],
   'Student Professional Bodies': [
     'Core Coordinator',
@@ -242,20 +266,20 @@ Map<String, List<String>> dropdownItems3 = {
     'Editorial Board'
   ],
   'Tech Fest and Tech Quiz': [
-    'Level 1',
-    'Level 2',
-    'Level 3',
-    'Level 4',
-    'Level 5'
+    'College Level',
+    'Zonal Level',
+    'State/University Level',
+    'National Level',
+    'International Level'
   ],
   'MOOC with Certification': ['MOOC with Certification'],
   'Foreign Language Skills': ['Foreign Language Skills'],
   'Competitions by Professional Societies': [
-    'Level 1',
-    'Level 2',
-    'Level 3',
-    'Level 4',
-    'Level 5'
+    'College Level',
+    'Zonal Level',
+    'State/University Level',
+    'National Level',
+    'International Level'
   ],
   'Attending Seminar/Workshop other than with tech fest': [
     'Attending Seminar/Workshop other than with tech fest'
