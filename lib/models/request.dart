@@ -11,6 +11,9 @@ class Request {
   final String activityType;
   final String activity;
   final String activityLevel;
+  final String batch; // batch of the student
+  final int yearActivityDoneIn;
+  String? optionalMessage;
 
   Request({
     required this.requestId,
@@ -23,6 +26,9 @@ class Request {
     required this.activityType,
     required this.activity,
     required this.activityLevel,
+    required this.batch,
+    required this.yearActivityDoneIn,
+    this.optionalMessage,
   });
 
   Map<String, dynamic> toMap() {
@@ -37,6 +43,27 @@ class Request {
       'activity_type': activityType,
       'activity': activity,
       'activity_level': activityLevel,
+      'batch': batch,
+      'year_activity_done_in': yearActivityDoneIn,
+      'optional_message': optionalMessage,
     };
+  }
+
+  factory Request.fromMap(Map<String, dynamic> map) {
+    return Request(
+      requestId: map['request_id'] as String,
+      activityId: map['activity_id'] as String,
+      createdBy: map['created_by'] as String,
+      createdAt: map['created_at'].toDate() as DateTime,
+      imageUrl: map['image_url'] as String,
+      assignedTo: map['assigned_to'] as String,
+      status: Status.values[map['status'] as int],
+      activityType: map['activity_type'] as String,
+      activity: map['activity'] as String,
+      activityLevel: map['activity_level'] as String,
+      batch: map['batch'] as String,
+      yearActivityDoneIn: map['year_activity_done_in'] as int,
+      optionalMessage: map['optional_message'] as String?,
+    );
   }
 }

@@ -34,6 +34,7 @@ class _NewRequestState extends State<NewRequest> {
   int? _selectedIndex1;
   int? _selectedIndex2;
   int? _selectedIndex3;
+  int? _selectedYear;
 
   final List<String> _dropdownItems1 = dropdownItems1;
   final Map<String, List<String>> _dropdownItems2 = dropdownItems2;
@@ -42,6 +43,8 @@ class _NewRequestState extends State<NewRequest> {
   bool canUploadRequest = false;
 
   final ActivityPointsService _activityPointsService = ActivityPointsService();
+
+  final _optionalTextController = TextEditingController();
 
   Future<void> getImageFromCamera() async {
     await ImageService.getImageFromCamera((String? imagePath) {
@@ -99,6 +102,7 @@ class _NewRequestState extends State<NewRequest> {
                           _selectedItem3 = null;
                           _selectedIndex3 = null;
                           _activityId = null;
+                          _selectedYear = null;
                         });
                       },
                       items: _dropdownItems1.map((String value) {
@@ -255,17 +259,60 @@ class _NewRequestState extends State<NewRequest> {
                         // const SizedBox(height: 32.0),
                         Visibility(
                           visible: canUploadRequest,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          child: Column(
                             children: [
-                              ElevatedButton(
-                                onPressed: getImageFromCamera,
-                                child: const Text('Take Photo'),
+                              TextField(
+                                controller: _optionalTextController,
+                                maxLines: 3,
+                                decoration: const InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(8.0),
+                                    ),
+                                  ),
+                                  hintText:
+                                      'If you have any additional comments, enter here. '
+                                      '(eg: Duration of the course you attended or '
+                                      'which college a workshop took place in.)',
+                                  hintStyle: TextStyle(fontSize: 16.0),
+                                  // labelText: 'Optional Comments',
+                                  // labelStyle: TextStyle(
+                                  //     fontSize: 16.0
+                                  // ),
+                                ),
                               ),
                               const SizedBox(height: 16.0),
-                              ElevatedButton(
-                                onPressed: getImageFromGallery,
-                                child: const Text('Upload Photo'),
+                              DropdownButton<int>(
+                                hint: const Text('Year activity done in'),
+                                value: _selectedYear,
+                                isExpanded: true,
+                                onChanged: (int? newValue) {
+                                  setState(() {
+                                    _selectedYear = newValue;
+                                  });
+                                },
+                                items: <int>[1, 2, 3, 4]
+                                    .map<DropdownMenuItem<int>>((int value) {
+                                  return DropdownMenuItem<int>(
+                                    value: value,
+                                    child: Text(value.toString()),
+                                  );
+                                }).toList(),
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: getImageFromCamera,
+                                    child: const Text('Take Photo'),
+                                  ),
+                                  const SizedBox(height: 16.0),
+                                  ElevatedButton(
+                                    onPressed: getImageFromGallery,
+                                    child: const Text('Upload Photo'),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
@@ -282,7 +329,11 @@ class _NewRequestState extends State<NewRequest> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.fromLTRB(
-                                    8.0, 32.0, 8.0, 16.0),
+                                  8.0,
+                                  32.0,
+                                  8.0,
+                                  16.0,
+                                ),
                                 child: Image.file(
                                   File(_imagePath ?? ''),
                                 ),
@@ -322,6 +373,8 @@ class _NewRequestState extends State<NewRequest> {
                                         await preferencesService.getUid();
                                     final tid =
                                         await preferencesService.getTid();
+                                    final batch =
+                                        await preferencesService.getBatch();
 
                                     try {
                                       String imageUrl =
@@ -343,6 +396,10 @@ class _NewRequestState extends State<NewRequest> {
                                         activityType: _selectedItem1!,
                                         activity: _selectedItem2!,
                                         activityLevel: _selectedItem3!,
+                                        batch: batch!,
+                                        yearActivityDoneIn: _selectedYear!,
+                                        optionalMessage:
+                                            _optionalTextController.text,
                                       );
                                       await requestUploadService
                                           .uploadRequest(request);
@@ -381,6 +438,12 @@ class _NewRequestState extends State<NewRequest> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _optionalTextController.dispose();
+    super.dispose();
   }
 }
 
