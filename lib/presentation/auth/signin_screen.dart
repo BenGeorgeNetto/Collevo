@@ -38,10 +38,10 @@ class _SignInState extends State<SignIn> {
           if (state.exception is UserNotFoundAuthException) {
             await showErrorDialog(
               context,
-              'Check entered credentials',
+              'Ensure that you are registered',
             );
           } else if (state.exception is WrongPasswordAuthException) {
-            await showErrorDialog(context, 'Wrong credentials');
+            await showErrorDialog(context, 'Check your email and password');
           } else if (state.exception is GenericAuthException) {
             await showErrorDialog(context, 'Authentication error');
           }

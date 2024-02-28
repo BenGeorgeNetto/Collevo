@@ -54,7 +54,7 @@ class PreferencesService {
 
   Future<void> setUserDetails(String email) async {
     final QuerySnapshot snapshot = await FirebaseFirestore.instance
-        .collection('students')
+        .collectionGroup('student_data')
         .where('email', isEqualTo: email)
         .limit(1)
         .get();

@@ -11,11 +11,16 @@ class ActivityPointsService {
   Future<Map<String, int>> getActivityPoints() async {
     final PreferencesService preferencesService = PreferencesService();
     final String? email = await preferencesService.getEmail();
+    final String? batch = await preferencesService.getBatch();
     try {
       FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-      DocumentSnapshot<Map<String, dynamic>> studentDocument =
-          await firestore.collection('students').doc(email).get();
+      DocumentSnapshot<Map<String, dynamic>> studentDocument = await firestore
+          .collection('students')
+          .doc(batch)
+          .collection("student_data")
+          .doc(email)
+          .get();
 
       if (studentDocument.exists) {
         // print('Document data: ${studentDocument.data()}');
@@ -38,11 +43,16 @@ class ActivityPointsService {
   Future<int?> getTotalActivityPoints() async {
     final PreferencesService preferencesService = PreferencesService();
     final String? email = await preferencesService.getEmail();
+    final String? batch = await preferencesService.getBatch();
     try {
       FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-      DocumentSnapshot<Map<String, dynamic>> studentDocument =
-          await firestore.collection('students').doc(email).get();
+      DocumentSnapshot<Map<String, dynamic>> studentDocument = await firestore
+          .collection('students')
+          .doc(batch)
+          .collection("student_data")
+          .doc(email)
+          .get();
 
       if (studentDocument.exists) {
         // print('Document data: ${studentDocument.data()}');
