@@ -46,7 +46,7 @@ class _StatsScreenState extends State<StatsScreen> {
         children: [
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Text('Total Activity Points: $totalActivityPoints}',
+            child: Text('Total Activity Points: $totalActivityPoints',
                 style: Theme.of(context).textTheme.bodyLarge),
           ),
           Expanded(
