@@ -11,11 +11,16 @@ class ActivityPointsService {
   Future<Map<String, int>> getActivityPoints() async {
     final PreferencesService preferencesService = PreferencesService();
     final String? email = await preferencesService.getEmail();
+    final String? batch = await preferencesService.getBatch();
     try {
       FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-      DocumentSnapshot<Map<String, dynamic>> studentDocument =
-          await firestore.collection('students').doc(email).get();
+      DocumentSnapshot<Map<String, dynamic>> studentDocument = await firestore
+          .collection('students')
+          .doc(batch)
+          .collection("student_data")
+          .doc(email)
+          .get();
 
       if (studentDocument.exists) {
         // print('Document data: ${studentDocument.data()}');
@@ -32,6 +37,35 @@ class ActivityPointsService {
     } catch (e) {
       // print('Error getting activityPoints: $e');
       return {};
+    }
+  }
+
+  Future<int?> getTotalActivityPoints() async {
+    final PreferencesService preferencesService = PreferencesService();
+    final String? email = await preferencesService.getEmail();
+    final String? batch = await preferencesService.getBatch();
+    try {
+      FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+      DocumentSnapshot<Map<String, dynamic>> studentDocument = await firestore
+          .collection('students')
+          .doc(batch)
+          .collection("student_data")
+          .doc(email)
+          .get();
+
+      if (studentDocument.exists) {
+        // print('Document data: ${studentDocument.data()}');
+        Map<String, dynamic> data = studentDocument.data()!;
+        int totalActivityPoints = data['total_activity_points'] as int;
+
+        return totalActivityPoints;
+      } else {
+        // print('Document does not exist on the database');
+        return null;
+      }
+    } catch (e) {
+      return null;
     }
   }
 

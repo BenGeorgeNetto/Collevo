@@ -7,8 +7,11 @@ class RequestsFetchService {
   Future<List<Request>> fetchMyRequestsByStatus(Status status) async {
     try {
       final String? currentUserUID = await PreferencesService().getUid();
+      final String? batch = await PreferencesService().getBatch();
 
       final querySnapshot = await FirebaseFirestore.instance
+          .collection("students")
+          .doc(batch)
           .collection('requests')
           .where(
             'created_by',
@@ -27,11 +30,13 @@ class RequestsFetchService {
           createdBy: doc['created_by'],
           createdAt: doc['created_at'].toDate(),
           imageUrl: doc['image_url'],
-          assignedTo: doc['assigned_to'],
           status: Status.values[doc['status']],
           activityType: doc['activity_type'],
           activity: doc['activity'],
           activityLevel: doc['activity_level'],
+          batch: doc['batch'],
+          yearActivityDoneIn: doc['year_activity_done_in'],
+          optionalMessage: doc['optional_message'],
         );
       }).toList();
 

@@ -194,15 +194,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     final String uid = currentUser.id;
 
-    final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-        .collection('students')
-        .where('email', isEqualTo: email)
-        .get();
+    try {
+      final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collectionGroup('student_data')
+          .where('email', isEqualTo: email)
+          .limit(1)
+          .get();
 
-    final List<DocumentSnapshot> documents = querySnapshot.docs;
-    for (final DocumentSnapshot doc in documents) {
-      final DocumentReference docRef = doc.reference;
-      await docRef.update({'uid': uid});
+      final List<DocumentSnapshot> documents = querySnapshot.docs;
+      for (final DocumentSnapshot doc in documents) {
+        print('Updating document: ${doc.reference.id}');
+        final DocumentReference docRef = doc.reference;
+        await docRef.update({'uid': uid});
+      }
+    } catch (e) {
+      print('An error occurred while updating the documents: $e');
     }
   }
 }

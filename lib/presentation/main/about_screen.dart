@@ -1,9 +1,14 @@
 import 'package:collevo/utilities/communication/mail_util.dart';
 import 'package:collevo/widgets/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
+
+  Future<PackageInfo> _getPackageInfo() {
+    return PackageInfo.fromPlatform();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +38,27 @@ class AboutScreen extends StatelessWidget {
                 "Version",
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
-              Text(
-                '1.0.0-alpha2',
-                style: Theme.of(context).textTheme.bodyMedium,
+              FutureBuilder<PackageInfo>(
+                future: _getPackageInfo(),
+                builder: (BuildContext context,
+                    AsyncSnapshot<PackageInfo> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (snapshot.hasError) {
+                    return Center(
+                      child: Text('Error: ${snapshot.error}'),
+                    );
+                  } else {
+                    return Center(
+                      child: Text(
+                        '${snapshot.data?.version}',
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                    );
+                  }
+                },
               ),
               const SizedBox(
                 height: 16.0,

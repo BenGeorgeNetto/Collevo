@@ -42,7 +42,7 @@ class CustomTextTheme extends TextTheme {
           ),
           headlineMedium: const TextStyle(
             fontFamily: 'OpenSans',
-            fontSize: 28,
+            fontSize: 24,
             fontWeight: FontWeight.w500,
           ),
           headlineSmall: const TextStyle(
@@ -50,7 +50,10 @@ class CustomTextTheme extends TextTheme {
             fontSize: 20,
             fontWeight: FontWeight.w500,
           ),
-          labelLarge: const TextStyle(fontFamily: 'OpenSans', fontSize: 24,),
+          labelLarge: const TextStyle(
+            fontFamily: 'OpenSans',
+            fontSize: 24,
+          ),
           labelMedium: const TextStyle(
             fontFamily: 'OpenSans',
             fontSize: 18,
