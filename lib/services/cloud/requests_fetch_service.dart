@@ -30,7 +30,6 @@ class RequestsFetchService {
           createdBy: doc['created_by'],
           createdAt: doc['created_at'].toDate(),
           imageUrl: doc['image_url'],
-          assignedTo: doc['assigned_to'],
           status: Status.values[doc['status']],
           activityType: doc['activity_type'],
           activity: doc['activity'],

@@ -47,11 +47,6 @@ class PreferencesService {
     return preferences.getString('uid');
   }
 
-  Future<String?> getTid() async {
-    final preferences = await _getSharedPreferencesInstance();
-    return preferences.getString('t_id');
-  }
-
   Future<void> setUserDetails(String email) async {
     final QuerySnapshot snapshot = await FirebaseFirestore.instance
         .collectionGroup('student_data')
@@ -67,7 +62,6 @@ class PreferencesService {
         final studentId = userData['s_id'] as String?;
         final batch = userData['batch'] as String?;
         final dept = userData['dept'] as String?;
-        final teacherId = userData['t_id'] as String?;
 
         final preferences = await SharedPreferences.getInstance();
         preferences.setString('email', email.trim());
@@ -76,7 +70,6 @@ class PreferencesService {
         preferences.setString('s_id', studentId!.trim());
         preferences.setString('batch', batch!.trim());
         preferences.setString('dept', dept!.trim());
-        preferences.setString('t_id', teacherId ?? '');
 
         return;
       }

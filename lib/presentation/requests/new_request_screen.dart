@@ -264,12 +264,16 @@ class _NewRequestState extends State<NewRequest> {
                               TextField(
                                 controller: _optionalTextController,
                                 maxLines: 3,
+                                style: const TextStyle(
+                                  fontSize: 16.0,
+                                ),
                                 decoration: const InputDecoration(
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(8.0),
                                     ),
                                   ),
+
                                   hintText:
                                       'If you have any additional comments, enter here. '
                                       '(eg: Duration of the course you attended or '
@@ -282,23 +286,46 @@ class _NewRequestState extends State<NewRequest> {
                                 ),
                               ),
                               const SizedBox(height: 16.0),
-                              DropdownButton<int>(
-                                hint: const Text('Year activity done in'),
-                                value: _selectedYear,
-                                isExpanded: true,
-                                onChanged: (int? newValue) {
-                                  setState(() {
-                                    _selectedYear = newValue;
-                                  });
-                                },
-                                items: <int>[1, 2, 3, 4]
-                                    .map<DropdownMenuItem<int>>((int value) {
-                                  return DropdownMenuItem<int>(
-                                    value: value,
-                                    child: Text(value.toString()),
-                                  );
-                                }).toList(),
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 16.0),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).colorScheme.surface,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                child: DropdownButtonHideUnderline(
+                                  child: DropdownButton<int>(
+                                    hint: const Text('Year activity done in'),
+                                    value: _selectedYear,
+                                    isExpanded: true,
+                                    onChanged: (int? newValue) {
+                                      setState(() {
+                                        _selectedYear = newValue;
+                                      });
+                                    },
+                                    items: <int>[
+                                      1,
+                                      2,
+                                      3,
+                                      4
+                                    ].map<DropdownMenuItem<int>>((int value) {
+                                      return DropdownMenuItem<int>(
+                                        value: value,
+                                        child: Text(
+                                          value.toString(),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headlineSmall,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      );
+                                    }).toList(),
+                                    dropdownColor:
+                                        Theme.of(context).colorScheme.surface,
+                                  ),
+                                ),
                               ),
+                              const SizedBox(height: 16.0),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
@@ -371,8 +398,6 @@ class _NewRequestState extends State<NewRequest> {
                                         RequestUploadService();
                                     final uid =
                                         await preferencesService.getUid();
-                                    final tid =
-                                        await preferencesService.getTid();
                                     final batch =
                                         await preferencesService.getBatch();
 
@@ -387,7 +412,6 @@ class _NewRequestState extends State<NewRequest> {
                                           await generateRequestId();
                                       final Request request = Request(
                                         activityId: _activityId!,
-                                        assignedTo: tid!,
                                         createdAt: DateTime.now(),
                                         createdBy: uid,
                                         imageUrl: imageUrl,

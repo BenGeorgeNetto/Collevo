@@ -6,7 +6,6 @@ class Request {
   final String createdBy; // uid of the user
   final DateTime createdAt;
   final String imageUrl;
-  final String assignedTo; // uid of teacher
   final Status status;
   final String activityType;
   final String activity;
@@ -21,7 +20,6 @@ class Request {
     required this.createdBy,
     required this.createdAt,
     required this.imageUrl,
-    required this.assignedTo,
     required this.status,
     required this.activityType,
     required this.activity,
@@ -38,7 +36,6 @@ class Request {
       'created_by': createdBy,
       'created_at': createdAt,
       'image_url': imageUrl,
-      'assigned_to': assignedTo,
       'status': status.index,
       'activity_type': activityType,
       'activity': activity,
@@ -56,7 +53,6 @@ class Request {
       createdBy: map['created_by'] as String,
       createdAt: map['created_at'].toDate() as DateTime,
       imageUrl: map['image_url'] as String,
-      assignedTo: map['assigned_to'] as String,
       status: Status.values[map['status'] as int],
       activityType: map['activity_type'] as String,
       activity: map['activity'] as String,
