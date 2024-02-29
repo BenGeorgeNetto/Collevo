@@ -1,4 +1,4 @@
-package com.benstech.collevo_student
+package `in`.ac.mbcet.collevo_student
 
 import io.flutter.embedding.android.FlutterActivity
 
