@@ -45,17 +45,18 @@ class _SettingsState extends State<Settings> {
                 onTap: () async {
                   final shouldLogout = await showLogOutDialog(context);
                   if (shouldLogout) {
-                    context.read<AuthBloc>().add(
-                          const AuthEventLogOut(),
-                        );
                     BlocProvider.of<BottomNavBarCubit>(context).selectTab(0);
-                    Future.delayed(const Duration(milliseconds: 1000));
-                    Navigator.pushReplacement(
+                    Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
                         builder: (context) => const Landing(),
                       ),
+                      (route) => false,
                     );
+                    Future.delayed(const Duration(milliseconds: 100));
+                    context.read<AuthBloc>().add(
+                          const AuthEventLogOut(),
+                        );
                   }
                 },
               ),
