@@ -432,8 +432,13 @@ class _NewRequestState extends State<NewRequest> {
                                         optionalMessage:
                                             _optionalTextController.text,
                                       );
+                                      LoadingScreen().show(
+                                        context: context,
+                                        text: 'Uploading the request...',
+                                      );
                                       await requestUploadService
                                           .uploadRequest(request);
+                                      LoadingScreen().hide();
                                       showUploadSuccessSnackbar(context);
                                       Future.delayed(const Duration(seconds: 2),
                                           () {
