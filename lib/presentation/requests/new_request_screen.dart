@@ -208,8 +208,15 @@ class _NewRequestState extends State<NewRequest> {
                                     '${_selectedIndex1}_${_selectedIndex2}_$_selectedIndex3';
                               });
 
+                              LoadingScreen().show(
+                                context: context,
+                                text: 'Checking if activity points can be inserted...',
+                              );
+
                               canUploadRequest = await _activityPointsService
                                   .checkIfCanInsertActivityPoints(_activityId!);
+
+                              LoadingScreen().hide();
 
                               setState(() {
                                 canUploadRequest = canUploadRequest;
