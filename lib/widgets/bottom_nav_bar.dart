@@ -37,7 +37,7 @@ class BottomNavBar extends StatelessWidget {
   void _navigateToPage(BuildContext context, int index) {
     switch (index) {
       case 0:
-        Navigator.pushReplacementNamed(context, '/');
+        Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
         break;
       case 1:
         Navigator.pushReplacementNamed(context, '/view_requests');
@@ -45,6 +45,8 @@ class BottomNavBar extends StatelessWidget {
       case 2:
         Navigator.pushReplacementNamed(context, '/settings');
         break;
+      default:
+        Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
     }
   }
 }

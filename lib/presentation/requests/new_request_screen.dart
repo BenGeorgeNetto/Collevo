@@ -10,6 +10,7 @@ import 'package:collevo/services/cloud/activity_points_service.dart';
 import 'package:collevo/services/cloud/firebase_storage_service.dart';
 import 'package:collevo/services/cloud/request_upload_service.dart';
 import 'package:collevo/services/preferences/preferences_service.dart';
+import 'package:collevo/utilities/dialogs/insert_year_dialog.dart';
 import 'package:collevo/utilities/dialogs/remove_image_dialog.dart';
 import 'package:collevo/utilities/dialogs/upload_request_dialog.dart';
 import 'package:collevo/utilities/snackbars/upload_snackbar.dart';
@@ -208,8 +209,15 @@ class _NewRequestState extends State<NewRequest> {
                                     '${_selectedIndex1}_${_selectedIndex2}_$_selectedIndex3';
                               });
 
+                              LoadingScreen().show(
+                                context: context,
+                                text: 'Checking if activity points can be inserted...',
+                              );
+
                               canUploadRequest = await _activityPointsService
                                   .checkIfCanInsertActivityPoints(_activityId!);
+
+                              LoadingScreen().hide();
 
                               setState(() {
                                 canUploadRequest = canUploadRequest;
@@ -386,6 +394,10 @@ class _NewRequestState extends State<NewRequest> {
                               const SizedBox(height: 16.0),
                               ElevatedButton(
                                 onPressed: () async {
+                                  if (_selectedYear == null) {
+                                    await showInsertYearDialog(context);
+                                    return;
+                                  }
                                   bool? confirm =
                                       await showUploadRequestDialog(context);
                                   if (confirm == true) {
@@ -425,8 +437,13 @@ class _NewRequestState extends State<NewRequest> {
                                         optionalMessage:
                                             _optionalTextController.text,
                                       );
+                                      LoadingScreen().show(
+                                        context: context,
+                                        text: 'Uploading the request...',
+                                      );
                                       await requestUploadService
                                           .uploadRequest(request);
+                                      LoadingScreen().hide();
                                       showUploadSuccessSnackbar(context);
                                       Future.delayed(const Duration(seconds: 2),
                                           () {

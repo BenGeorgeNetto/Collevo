@@ -83,4 +83,9 @@ class PreferencesService {
 
     preferences.setString('uid', currentUser?.id ?? '');
   }
+
+  Future<void> clearPreferences() async {
+    final preferences = await _getSharedPreferencesInstance();
+    await preferences.clear();
+  }
 }

@@ -127,14 +127,20 @@ class Landing extends StatelessWidget {
   }
 
   Future<void> _launchUpdateUrl() async {
-    // TODO: After uploading app to play store, replace the URL with the app's play store link
-    // const url = 'https://play.google.com/store/apps/details?id=com.yourapp';
-    Uri url = Uri.parse(
-        'https://drive.google.com/drive/u/1/folders/16DF_Q4onZfDL32QwR85qdJhsS6oHaqEQ');
-    // if (await canLaunchUrl(url)) {
-    await launchUrl(url);
-    // } else {
-    // print('Could not launch $url');
-    // }
+    try {
+      // TODO: After uploading app to play store, replace the URL with the app's play store link
+      // const url = 'https://play.google.com/store/apps/details?id=com.yourapp';
+      Uri url = Uri.parse(
+          'https://drive.google.com/drive/u/1/folders/16DF_Q4onZfDL32QwR85qdJhsS6oHaqEQ');
+      final Uri uri = Uri.parse(url.toString());
+      if (!await launchUrl(
+        uri,
+        mode: LaunchMode.externalApplication,
+      )) {
+        // print('Could not launch $url');
+      }
+    } catch (e) {
+      // print('An error occurred: $e');
+    }
   }
 }
