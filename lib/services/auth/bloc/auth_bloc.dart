@@ -153,6 +153,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthEventLogOut>((event, emit) async {
       try {
         await provider.logOut();
+        await PreferencesService().clearPreferences();
         emit(
           const AuthStateLoggedOut(
             exception: null,
